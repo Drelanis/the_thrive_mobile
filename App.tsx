@@ -1,12 +1,15 @@
 import { config } from '@gluestack-ui/config';
-import { Box, GluestackUIProvider, Text } from '@gluestack-ui/themed';
+import { GluestackUIProvider } from '@gluestack-ui/themed';
+import { NavigationContainer } from '@react-navigation/native';
+
+import { MyDrawer } from './src/app';
 
 const App = () => {
   return (
     <GluestackUIProvider config={config}>
-      <Box width="100%" justifyContent="center" alignItems="center" flex={1}>
-        <Text>Open up App.js to start working on your app!</Text>
-      </Box>
+      <NavigationContainer>
+        <MyDrawer />
+      </NavigationContainer>
     </GluestackUIProvider>
   );
 };
