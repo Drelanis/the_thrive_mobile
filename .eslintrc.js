@@ -36,8 +36,10 @@ module.exports = {
     'eslint-plugin-import',
     'simple-import-sort',
     'react-native',
+    'prefer-arrow',
   ],
   rules: {
+    'prefer-arrow/prefer-arrow-functions': 'error',
     'react/react-in-jsx-scope': 0,
     'simple-import-sort/imports': [
       'error',
