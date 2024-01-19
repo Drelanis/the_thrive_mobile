@@ -21,6 +21,11 @@
     "noImplicitAny": true,
     "noUnusedLocals": true,
     "forceConsistentCasingInFileNames": false,
+    "baseUrl": ".",
+    "paths": {
+      "$app": ["src/app"],
+      "$app/*": ["src/app/*"],
+    },
   },
   "extends": "expo/tsconfig.base",
   "exclude": ["node_modules", "dist"],
