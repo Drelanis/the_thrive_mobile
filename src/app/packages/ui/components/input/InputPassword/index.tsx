@@ -2,7 +2,7 @@ import { Input, InputField, InputSlot } from '@gluestack-ui/themed';
 
 import { useLogic } from './useLogic';
 
-import { EyeOffIcon, EyeOnIcon } from '$ui';
+import { EyeOffIcon, EyeOnIcon } from '$icons';
 
 export const InputPassword = () => {
   const { isVisible, hidePassword, showPassword } = useLogic();
