@@ -24,6 +24,7 @@
     "expo": "49.0.21",
     "expo-status-bar": "1.6.0",
     "husky": "^8.0.3",
+    "json-server": "^1.0.0-alpha.21",
     "lint-staged": "^15.2.0",
     "lucide-react-native": "^0.312.0",
     "prettier": "^3.2.4",
