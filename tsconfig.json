@@ -25,6 +25,12 @@
     "paths": {
       "$app": ["src/app"],
       "$app/*": ["src/app/*"],
+      "$layout": ["src/app/layout"],
+      "$layout/*": ["src/app/layout/*"],
+      "$modules": ["src/app/modules"],
+      "$modules/*": ["src/app/modules/*"],
+      "$ui": ["src/app/packages/ui"],
+      "$ui/*": ["src/app/packages/ui*"],
     },
   },
   "extends": "expo/tsconfig.base",
