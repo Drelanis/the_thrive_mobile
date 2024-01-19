@@ -40,6 +40,8 @@ module.exports = {
   ],
   rules: {
     'prefer-arrow/prefer-arrow-functions': 'error',
+    'react-native/no-inline-styles': 'error',
+    'react/display-name': 0,
     'react/react-in-jsx-scope': 0,
     'simple-import-sort/imports': [
       'error',

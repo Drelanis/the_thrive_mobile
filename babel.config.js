@@ -9,6 +9,9 @@ module.exports = function (api) {
         {
           alias: {
             $app: './src/app',
+            $layout: './src/app/layout',
+            $modules: './src/app/modules',
+            $packages: './src/app/packages/ui',
           },
           extensions: ['.js', '.jsx', '.ts', '.tsx'],
         },
