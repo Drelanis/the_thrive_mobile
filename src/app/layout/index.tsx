@@ -1,13 +1,11 @@
-import { Text, View } from 'react-native';
-
 import { AppProviders } from '../providers';
+
+import { SignIn } from '$modules';
 
 export const App = () => {
   return (
     <AppProviders>
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Text>Article Screen</Text>
-      </View>
+      <SignIn />
     </AppProviders>
   );
 };
