@@ -10,9 +10,11 @@ module.exports = function (api) {
           alias: {
             $app: './src/app',
             $layout: './src/app/layout',
+            $store: './src/app/store',
             $modules: './src/app/modules',
             $ui: './src/app/packages/ui',
             $icons: './src/app/packages/ui/icons',
+            $configs: './src/app/packages/configs',
           },
           extensions: ['.js', '.jsx', '.ts', '.tsx'],
         },
