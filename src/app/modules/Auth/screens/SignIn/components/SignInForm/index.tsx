@@ -2,7 +2,7 @@ import { VStack } from '@gluestack-ui/themed';
 import { Control } from 'react-hook-form';
 import { StyleSheet } from 'react-native';
 
-import { SignInStoreType } from '$store';
+import { SignInStoreType } from '$app/stores';
 import { Input, InputType } from '$ui';
 
 type Props = {

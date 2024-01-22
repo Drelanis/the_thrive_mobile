@@ -4,7 +4,7 @@ import { UseFormGetValues } from 'react-hook-form';
 import { Alert } from 'react-native';
 
 import { companyApi } from '$app/api';
-import { SignInStoreType } from '$app/store';
+import { SignInStoreType } from '$app/stores';
 import { Screens, ScreenStackType } from '$layout/types';
 
 type Params = {
