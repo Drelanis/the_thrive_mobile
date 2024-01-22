@@ -1,19 +1,9 @@
-import { createMultiScreenStore } from './store';
-
 export type SignInStoreType = {
-  signIn: {
-    email: string;
-    password: string;
-  };
+  email: string;
+  password: string;
 };
 
 export const signInStore: SignInStoreType = {
-  signIn: {
-    email: '',
-    password: '',
-  },
+  email: '',
+  password: '',
 };
-
-const store = createMultiScreenStore(signInStore);
-
-console.log(store.getState());
