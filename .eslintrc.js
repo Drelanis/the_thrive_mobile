@@ -46,6 +46,7 @@ module.exports = {
   ],
   rules: {
     'no-console': 2,
+    'import/prefer-default-export': 0,
     'prefer-arrow/prefer-arrow-functions': 'error',
     'react-native/no-inline-styles': 'error',
     'react/display-name': 0,
