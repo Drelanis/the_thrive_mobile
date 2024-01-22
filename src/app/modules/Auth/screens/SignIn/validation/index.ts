@@ -1,6 +1,6 @@
 import * as yup from 'yup';
 
-import { ValidationHints } from '$configs';
+import { ValidationHints } from '$packages/configs';
 
 export const signInValidationSchema = yup.object({
   email: yup

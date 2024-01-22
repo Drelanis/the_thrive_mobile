@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import { StyleSheet } from 'react-native';
 
 import { SignInForm } from './components';
+import { useLogic } from './useLogic';
 import { signInValidationSchema } from './validation';
 
 import { signInStore } from '$store';
@@ -12,19 +13,28 @@ import { Button } from '$ui';
 export const SignIn = () => {
   const {
     control,
+    getValues,
     formState: { isValid },
   } = useForm({
+    values: {
+      email: 'testtest@gmail.com',
+      password: '123456',
+    },
     defaultValues: signInStore,
     resolver: yupResolver(signInValidationSchema),
     mode: 'onChange',
   });
+
+  const { onSubmit } = useLogic({ getValues });
 
   return (
     <VStack style={styles.container}>
       <Heading>SIGN IN</Heading>
       <Text>Enter your email and password</Text>
       <SignInForm control={control} />
-      <Button isDisabled={!isValid}>LOGIN</Button>
+      <Button onPress={onSubmit} isDisabled={!isValid}>
+        LOGIN
+      </Button>
     </VStack>
   );
 };
