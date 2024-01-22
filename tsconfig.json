@@ -39,6 +39,8 @@
       "$packages/*": ["src/app/packages/*"],
       "$configs": ["src/configs"],
       "$configs/*": ["src/configs/*"],
+      "$utils": ["src/app/utils"],
+      "$utils/*": ["src/app/utils/*"],
     },
   },
   "extends": "expo/tsconfig.base",
