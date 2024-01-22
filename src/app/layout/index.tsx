@@ -1,6 +1,6 @@
 import { createStackNavigator } from '@react-navigation/stack';
 
-import { AppProviders } from '../providers';
+import { AppProviders } from './providers';
 
 import { SignIn } from '$modules/Auth';
 import { Home } from '$modules/Home';
