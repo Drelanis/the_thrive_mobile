@@ -3,9 +3,11 @@ import {
   InputField,
   InputSlot,
   Text,
+  View,
   VStack,
 } from '@gluestack-ui/themed';
-import { FieldValues } from 'react-hook-form';
+import { FieldError, FieldValues } from 'react-hook-form';
+import { StyleSheet } from 'react-native';
 
 import { InputProps } from './types';
 import { useLogic } from './useLogic';
@@ -24,6 +26,8 @@ export const Input = <Type extends FieldValues>(props: InputProps<Type>) => {
     hidePassword,
     showPassword,
   } = useLogic({ name, control, type });
+
+  const styles = useStyles(error);
 
   return (
     <VStack>
@@ -44,9 +48,27 @@ export const Input = <Type extends FieldValues>(props: InputProps<Type>) => {
           </InputSlot>
         )}
       </GluestackInput>
-      {error && <Text>{error.message}</Text>}
+      {error && (
+        <View style={styles.helperContainer}>
+          <Text style={styles.helper}>{error.message}</Text>
+        </View>
+      )}
     </VStack>
   );
+};
+
+const useStyles = (error?: FieldError) => {
+  const styles = StyleSheet.create({
+    helperContainer: {
+      height: error ? 0 : 24,
+    },
+    helper: {
+      lineHeight: 24,
+      height: 24,
+    },
+  });
+
+  return styles;
 };
 
 export * from './types';

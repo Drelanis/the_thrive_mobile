@@ -2,11 +2,15 @@ import { Button as GluestackButton, ButtonText } from '@gluestack-ui/themed';
 import { PropsWithChildren } from 'react';
 import { StyleSheet } from 'react-native';
 
-export const Button = (props: PropsWithChildren) => {
-  const { children } = props;
+type Props = {
+  isDisabled?: boolean;
+} & PropsWithChildren;
+
+export const Button = (props: Props) => {
+  const { children, isDisabled = false } = props;
 
   return (
-    <GluestackButton style={styles.button}>
+    <GluestackButton isDisabled={isDisabled} style={styles.button}>
       <ButtonText>{children}</ButtonText>
     </GluestackButton>
   );

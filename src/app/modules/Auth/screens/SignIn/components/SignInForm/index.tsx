@@ -1,19 +1,16 @@
 import { VStack } from '@gluestack-ui/themed';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { useForm } from 'react-hook-form';
+import { Control } from 'react-hook-form';
 import { StyleSheet } from 'react-native';
 
-import { signInValidationSchema } from '../../validation';
-
-import { signInStore } from '$store';
+import { SignInStoreType } from '$store';
 import { Input, InputType } from '$ui';
 
-export const SignInForm = () => {
-  const { control } = useForm({
-    defaultValues: signInStore,
-    resolver: yupResolver(signInValidationSchema),
-    mode: 'onChange',
-  });
+type Props = {
+  control: Control<SignInStoreType>;
+};
+
+export const SignInForm = (props: Props) => {
+  const { control } = props;
 
   return (
     <VStack style={styles.container}>
