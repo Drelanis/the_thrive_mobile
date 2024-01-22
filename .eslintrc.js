@@ -39,6 +39,7 @@ module.exports = {
     'prefer-arrow',
   ],
   rules: {
+    'no-console': 2,
     'prefer-arrow/prefer-arrow-functions': 'error',
     'react-native/no-inline-styles': 'error',
     'react/display-name': 0,
