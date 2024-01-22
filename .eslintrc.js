@@ -4,11 +4,17 @@ module.exports = {
     es2021: true,
   },
   extends: [
-    'airbnb-typescript',
+    'airbnb',
     'airbnb/hooks',
-    'eslint:recommended',
+    'airbnb-typescript',
     'prettier',
     'plugin:react/recommended',
+    'plugin:prettier/recommended',
+    'plugin:react-hooks/recommended',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:@typescript-eslint/recommended-type-checked',
+    'plugin:eslint-comments/recommended',
+    'plugin:@cspell/recommended',
   ],
   overrides: [
     {
