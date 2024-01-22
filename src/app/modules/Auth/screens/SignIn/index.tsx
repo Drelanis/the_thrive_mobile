@@ -7,7 +7,7 @@ import { SignInForm } from './components';
 import { useLogic } from './useLogic';
 import { signInValidationSchema } from './validation';
 
-import { signInStore } from '$store';
+import { signInStore } from '$app/stores';
 import { Button } from '$ui';
 
 export const SignIn = () => {

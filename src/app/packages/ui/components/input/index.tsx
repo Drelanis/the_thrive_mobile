@@ -9,7 +9,7 @@ import {
 import { FieldError, FieldValues } from 'react-hook-form';
 import { StyleSheet } from 'react-native';
 
-import { InputProps } from './types';
+import { InputProps, InputType } from './types';
 import { useLogic } from './useLogic';
 
 import { EyeOffIcon, EyeOnIcon } from '$icons';
@@ -34,7 +34,7 @@ export const Input = <Type extends FieldValues>(props: InputProps<Type>) => {
       {title && <Text>{title}</Text>}
       <GluestackInput isInvalid={Boolean(error)} variant="underlined" size="md">
         <InputField
-          type={type}
+          type={isVisible ? InputType.PASSWORD : InputType.TEXT}
           value={value}
           onChangeText={onChange}
           autoCorrect={false}
