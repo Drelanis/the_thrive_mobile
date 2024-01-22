@@ -4,17 +4,11 @@ module.exports = {
     es2021: true,
   },
   extends: [
-    'airbnb',
-    'airbnb/hooks',
     'airbnb-typescript',
+    'airbnb/hooks',
+    'eslint:recommended',
     'prettier',
     'plugin:react/recommended',
-    'plugin:prettier/recommended',
-    'plugin:react-hooks/recommended',
-    'plugin:@typescript-eslint/recommended',
-    'plugin:@typescript-eslint/recommended-type-checked',
-    'plugin:eslint-comments/recommended',
-    'plugin:@cspell/recommended',
   ],
   overrides: [
     {
@@ -45,8 +39,7 @@ module.exports = {
     'prefer-arrow',
   ],
   rules: {
-    'no-console': 2,
-    'import/prefer-default-export': 0,
+    'import/extensions': 0,
     'prefer-arrow/prefer-arrow-functions': 'error',
     'react-native/no-inline-styles': 'error',
     'react/display-name': 0,
