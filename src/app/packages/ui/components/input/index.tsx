@@ -22,6 +22,7 @@ export const Input = <Type extends FieldValues>(props: InputProps<Type>) => {
     value,
     error,
     isPasswordType,
+    isShowPassword,
     onChange,
     hidePassword,
     showPassword,
@@ -34,7 +35,7 @@ export const Input = <Type extends FieldValues>(props: InputProps<Type>) => {
       {title && <Text>{title}</Text>}
       <GluestackInput isInvalid={Boolean(error)} variant="underlined" size="md">
         <InputField
-          type={isVisible ? InputType.PASSWORD : InputType.TEXT}
+          type={isPasswordType ? isShowPassword : InputType.TEXT}
           value={value}
           onChangeText={onChange}
           autoCorrect={false}
@@ -43,8 +44,8 @@ export const Input = <Type extends FieldValues>(props: InputProps<Type>) => {
         />
         {isPasswordType && (
           <InputSlot onPress={isVisible ? hidePassword : showPassword}>
-            {isVisible && <EyeOnIcon size={20} color="black" />}
-            {!isVisible && <EyeOffIcon size={20} color="black" />}
+            {isVisible && <EyeOffIcon size={20} color="black" />}
+            {!isVisible && <EyeOnIcon size={20} color="black" />}
           </InputSlot>
         )}
       </GluestackInput>

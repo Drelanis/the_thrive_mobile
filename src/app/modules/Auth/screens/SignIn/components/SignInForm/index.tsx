@@ -14,7 +14,12 @@ export const SignInForm = (props: Props) => {
 
   return (
     <VStack style={styles.container}>
-      <Input placeholder="Enter your email" control={control} name="email" />
+      <Input
+        type={InputType.TEXT}
+        placeholder="Enter your email"
+        control={control}
+        name="email"
+      />
       <Input
         placeholder="Enter your password"
         control={control}

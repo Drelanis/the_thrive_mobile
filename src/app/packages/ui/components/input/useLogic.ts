@@ -19,6 +19,8 @@ export const useLogic = <Type extends FieldValues>(params: Params<Type>) => {
 
   const isPasswordType = type === InputType.PASSWORD;
 
+  const isShowPassword = isVisible ? InputType.TEXT : InputType.PASSWORD;
+
   const {
     field: { value, onChange },
     fieldState: { error },
@@ -29,6 +31,7 @@ export const useLogic = <Type extends FieldValues>(params: Params<Type>) => {
     error,
     isVisible,
     isPasswordType,
+    isShowPassword,
     showPassword,
     hidePassword,
     onChange,
