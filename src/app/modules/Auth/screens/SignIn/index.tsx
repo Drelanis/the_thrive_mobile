@@ -8,7 +8,7 @@ import { useLogic } from './useLogic';
 import { signInValidationSchema } from './validation';
 
 import { signInStore } from '$app/stores';
-import { Button } from '$ui';
+import { Button, KeyboardAvoidingView } from '$ui';
 
 export const SignIn = () => {
   const {
@@ -28,14 +28,16 @@ export const SignIn = () => {
   const { onSubmit } = useLogic({ getValues });
 
   return (
-    <VStack style={styles.container}>
-      <Heading>SIGN IN</Heading>
-      <Text>Enter your email and password</Text>
-      <SignInForm control={control} />
-      <Button onPress={onSubmit} isDisabled={!isValid}>
-        LOGIN
-      </Button>
-    </VStack>
+    <KeyboardAvoidingView>
+      <VStack style={styles.container}>
+        <Heading>SIGN IN</Heading>
+        <Text>Enter your email and password</Text>
+        <SignInForm control={control} />
+        <Button onPress={onSubmit} isDisabled={!isValid}>
+          LOGIN
+        </Button>
+      </VStack>
+    </KeyboardAvoidingView>
   );
 };
 
