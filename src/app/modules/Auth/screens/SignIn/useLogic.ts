@@ -24,7 +24,7 @@ export const useLogic = <Type extends FieldValues>(params: Params<Type>) => {
       return;
     }
 
-    navigate(Screens.HOME);
+    navigate(Screens.MAIN);
   };
 
   return { onSubmit };

@@ -1,6 +1,7 @@
 import { createStackNavigator } from '@react-navigation/stack';
 
-import { DrawerNavigation } from '../drawer';
+import { Screens } from '../../types';
+import { DrawerNavigation } from '../Drawer';
 
 import { SignIn } from '$modules';
 
@@ -11,12 +12,12 @@ export const StackNavigation = () => {
     <Stack.Navigator>
       <Stack.Screen
         options={{ headerShown: false }}
-        name="SignIn"
+        name={Screens.SIGN_IN}
         component={SignIn}
       />
       <Stack.Screen
         options={{ headerShown: false }}
-        name="Home"
+        name={Screens.MAIN}
         component={DrawerNavigation}
       />
     </Stack.Navigator>

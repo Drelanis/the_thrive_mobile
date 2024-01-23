@@ -1,9 +1,9 @@
 export type ScreenStackType = {
-  Home: undefined;
   SignIn: undefined;
+  BottomNavigation: undefined;
 };
 
 export enum Screens {
-  HOME = 'Home',
   SIGN_IN = 'SignIn',
+  MAIN = 'BottomNavigation',
 }
