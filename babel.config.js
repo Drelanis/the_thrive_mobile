@@ -13,6 +13,7 @@ module.exports = function (api) {
             $store: './src/app/store',
             $modules: './src/app/modules',
             $ui: './src/app/packages/ui',
+            $common: './src/app/packages/common',
             $icons: './src/app/packages/ui/icons',
             $packages: './src/app/packages',
             $configs: './src/configs',

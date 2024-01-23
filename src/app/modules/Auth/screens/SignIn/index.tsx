@@ -25,7 +25,7 @@ export const SignIn = () => {
     mode: 'onChange',
   });
 
-  const { onSubmit, redirectSignUp } = useLogic({ getValues });
+  const { onSubmit, signUpRedirect } = useLogic({ getValues });
 
   return (
     <KeyboardAvoidingView>
@@ -39,7 +39,7 @@ export const SignIn = () => {
         <HStack style={styles.signUpContainer}>
           <Text>Don&apos;t have an account?</Text>
           <Button
-            onPress={redirectSignUp}
+            onPress={signUpRedirect}
             style={styles.signUpButton}
             variant={ButtonVariants?.LINK}
           >

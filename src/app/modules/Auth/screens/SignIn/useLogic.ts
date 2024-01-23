@@ -1,10 +1,8 @@
-import { useNavigation } from '@react-navigation/native';
-import { StackNavigationProp } from '@react-navigation/stack';
 import { FieldValues, UseFormGetValues } from 'react-hook-form';
 import { Alert } from 'react-native';
 
 import { companyApi } from '$app/api';
-import { Screens, ScreenStackType } from '$layout/types';
+import { useRedirect } from '$common';
 
 type Params<Type extends FieldValues> = {
   getValues: UseFormGetValues<Type>;
@@ -12,7 +10,7 @@ type Params<Type extends FieldValues> = {
 
 export const useLogic = <Type extends FieldValues>(params: Params<Type>) => {
   const { getValues } = params;
-  const { navigate } = useNavigation<StackNavigationProp<ScreenStackType>>();
+  const { bottomNavigationRedirect, signUpRedirect } = useRedirect();
 
   const onSubmit = async () => {
     const values = getValues();
@@ -24,12 +22,8 @@ export const useLogic = <Type extends FieldValues>(params: Params<Type>) => {
       return;
     }
 
-    navigate(Screens.MAIN);
+    bottomNavigationRedirect();
   };
 
-  const redirectSignUp = () => {
-    navigate(Screens.SIGN_UP);
-  };
-
-  return { onSubmit, redirectSignUp };
+  return { onSubmit, signUpRedirect };
 };

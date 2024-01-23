@@ -31,6 +31,8 @@
       "$modules/*": ["src/app/modules/*"],
       "$ui": ["src/app/packages/ui"],
       "$ui/*": ["src/app/packages/ui/*"],
+      "$common": ["src/app/packages/common"],
+      "$common/*": ["src/app/packages/common/*"],
       "$icons": ["src/app/packages/ui/icons"],
       "$icons/*": ["src/app/packages/ui/icons/*"],
       "$store": ["src/app/stores"],
