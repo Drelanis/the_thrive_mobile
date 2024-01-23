@@ -21,7 +21,7 @@ export const StackNavigation = () => {
         component={SignUp}
       />
       <Stack.Screen
-        options={{ headerShown: false }}
+        options={{ headerShown: false, gestureEnabled: false }}
         name={Screens.MAIN}
         component={DrawerNavigation}
       />
