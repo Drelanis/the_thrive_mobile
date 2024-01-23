@@ -1,6 +1,6 @@
 import { createStackNavigator } from '@react-navigation/stack';
 
-import { DrawerNavigation } from '../drawer';
+import { DrawerNavigation } from '../Drawer';
 
 import { SignIn } from '$modules';
 
