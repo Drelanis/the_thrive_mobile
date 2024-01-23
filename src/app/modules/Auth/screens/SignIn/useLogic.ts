@@ -27,5 +27,9 @@ export const useLogic = <Type extends FieldValues>(params: Params<Type>) => {
     navigate(Screens.MAIN);
   };
 
-  return { onSubmit };
+  const redirectSignUp = () => {
+    navigate(Screens.SIGN_UP);
+  };
+
+  return { onSubmit, redirectSignUp };
 };

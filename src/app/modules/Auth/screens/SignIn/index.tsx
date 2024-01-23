@@ -1,4 +1,4 @@
-import { Heading, Text, VStack } from '@gluestack-ui/themed';
+import { Heading, HStack, Text, VStack } from '@gluestack-ui/themed';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import { StyleSheet } from 'react-native';
@@ -8,7 +8,7 @@ import { useLogic } from './useLogic';
 import { signInValidationSchema } from './validation';
 
 import { signInStore } from '$app/stores';
-import { Button, KeyboardAvoidingView } from '$ui';
+import { Button, ButtonVariants, KeyboardAvoidingView } from '$ui';
 
 export const SignIn = () => {
   const {
@@ -25,7 +25,7 @@ export const SignIn = () => {
     mode: 'onChange',
   });
 
-  const { onSubmit } = useLogic({ getValues });
+  const { onSubmit, redirectSignUp } = useLogic({ getValues });
 
   return (
     <KeyboardAvoidingView>
@@ -36,6 +36,16 @@ export const SignIn = () => {
         <Button onPress={onSubmit} isDisabled={!isValid}>
           LOGIN
         </Button>
+        <HStack style={styles.signUpContainer}>
+          <Text>Don&apos;t have an account?</Text>
+          <Button
+            onPress={redirectSignUp}
+            style={styles.signUpButton}
+            variant={ButtonVariants?.LINK}
+          >
+            Sign up
+          </Button>
+        </HStack>
       </VStack>
     </KeyboardAvoidingView>
   );
@@ -48,5 +58,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 16,
     gap: 90,
+  },
+  signUpContainer: {
+    alignItems: 'center',
+    gap: 5,
+  },
+  signUpButton: {
+    width: 'auto',
   },
 });
