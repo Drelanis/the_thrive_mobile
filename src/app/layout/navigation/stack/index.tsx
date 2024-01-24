@@ -9,7 +9,13 @@ const Stack = createStackNavigator();
 
 export const StackNavigation = () => {
   return (
+    // TODO move Drawer Navigation to the end
     <Stack.Navigator>
+      <Stack.Screen
+        options={{ headerShown: false, gestureEnabled: false }}
+        name={Screens.MAIN}
+        component={DrawerNavigation}
+      />
       <Stack.Screen
         options={{ headerShown: false }}
         name={Screens.SIGN_IN}
@@ -19,11 +25,6 @@ export const StackNavigation = () => {
         options={{ headerShown: false }}
         name={Screens.SIGN_UP}
         component={SignUp}
-      />
-      <Stack.Screen
-        options={{ headerShown: false, gestureEnabled: false }}
-        name={Screens.MAIN}
-        component={DrawerNavigation}
       />
     </Stack.Navigator>
   );
