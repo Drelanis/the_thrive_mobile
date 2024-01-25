@@ -1,19 +1,25 @@
+import { createMultiScreenStore } from './store';
+
 export type SignUpStoreType = {
-  name: string;
-  email: string;
-  password: string;
-  repeatPassword: string;
-  directions: string[];
-  locations: string[];
-  numberOfEmployees: string;
+  signUp: {
+    name: string;
+    email: string;
+    password: string;
+    repeatPassword: string;
+    directions: (string | undefined)[];
+    numberOfEmployees: string;
+  };
 };
 
 export const signUpStore: SignUpStoreType = {
-  name: '',
-  email: '',
-  password: '',
-  repeatPassword: '',
-  directions: [],
-  locations: [],
-  numberOfEmployees: '',
+  signUp: {
+    name: '',
+    email: '',
+    password: '',
+    repeatPassword: '',
+    directions: [],
+    numberOfEmployees: '',
+  },
 };
+
+export const useSignUpCreationStore = createMultiScreenStore(signUpStore);
