@@ -7,3 +7,8 @@ export type CompanyType = {
   createdAt: Date;
   updatedAt: Date;
 };
+
+export type DirectionType = {
+  direction: string;
+  description: string;
+};
