@@ -12,14 +12,14 @@ export const StackNavigation = () => {
     // TODO move Drawer Navigation to the end
     <Stack.Navigator>
       <Stack.Screen
-        options={{ headerShown: false }}
-        name={Screens.SIGN_UP}
-        component={SignUp}
+        options={{ headerShown: false, gestureEnabled: false }}
+        name={Screens.SIGN_IN}
+        component={SignIn}
       />
       <Stack.Screen
         options={{ headerShown: false }}
-        name={Screens.SIGN_IN}
-        component={SignIn}
+        name={Screens.SIGN_UP}
+        component={SignUp}
       />
       <Stack.Screen
         options={{ headerShown: false, gestureEnabled: false }}

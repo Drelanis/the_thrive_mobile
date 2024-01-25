@@ -7,8 +7,10 @@ import {
   UseFormResetField,
 } from 'react-hook-form';
 
+import { useLogic } from './useLogic';
+
 import { useModal } from '$common';
-import { ArrowLeft, Button, FullScreenModal, Select } from '$ui';
+import { ArrowLeft, Button, CheckboxGroup, FullScreenModal, Select } from '$ui';
 
 type Props<Type extends FieldValues> = {
   control: Control<Type>;
@@ -28,6 +30,8 @@ export const SelectDirections = <Type extends FieldValues>(
     ...restProps,
   });
 
+  const { options } = useLogic();
+
   return (
     <>
       <Select
@@ -44,6 +48,13 @@ export const SelectDirections = <Type extends FieldValues>(
           title: 'Directions',
           goBack: onCloseHandler,
         }}
+        body={
+          <CheckboxGroup
+            control={control}
+            name={name}
+            options={options || []}
+          />
+        }
         footer={<Button onPress={onApplyHandler}>Apply</Button>}
       />
     </>
