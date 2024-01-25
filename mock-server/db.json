@@ -10,5 +10,23 @@
       "updatedAt": ""
     }
   ],
+  "directions": [
+    {
+      "direction": "it",
+      "description": "Technology and Software Development"
+    },
+    {
+      "direction": "healthy",
+      "description": "Healthcare and Biotechnology"
+    },
+    {
+      "direction": "finance",
+      "description": "Finance and Fintech"
+    },
+    {
+      "direction": "TV",
+      "description": "Telecommunications"
+    }
+  ],
   "employees": []
 }

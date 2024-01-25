@@ -1,6 +1,5 @@
 import {
   Input as GluestackInput,
-  InputField,
   InputSlot,
   Text,
   View,
@@ -9,24 +8,24 @@ import {
 import { FieldError, FieldValues } from 'react-hook-form';
 import { StyleSheet } from 'react-native';
 
+import { InputField } from './InputField';
 import { InputProps, InputType } from './types';
 import { useLogic } from './useLogic';
 
 import { EyeOffIcon, EyeOnIcon } from '$icons';
 
 export const Input = <Type extends FieldValues>(props: InputProps<Type>) => {
-  const { placeholder, name, control, title, type } = props;
-
   const {
-    isVisible,
-    value,
-    error,
-    isPasswordType,
-    isShowPassword,
-    onChange,
-    hidePassword,
-    showPassword,
-  } = useLogic({ name, control, type });
+    placeholder,
+    name,
+    control,
+    title,
+    type = InputType.TEXT,
+    mask,
+  } = props;
+
+  const { isVisible, value, error, isPasswordType, onChange, togglePassword } =
+    useLogic({ name, control, type });
 
   const styles = useStyles(error);
 
@@ -35,15 +34,16 @@ export const Input = <Type extends FieldValues>(props: InputProps<Type>) => {
       {title && <Text>{title}</Text>}
       <GluestackInput isInvalid={Boolean(error)} variant="underlined" size="md">
         <InputField
-          type={isPasswordType ? isShowPassword : InputType.TEXT}
+          type={type}
+          isVisible={isVisible}
+          isPasswordType={isPasswordType}
           value={value}
-          onChangeText={onChange}
-          autoCorrect={false}
-          autoCapitalize="none"
+          onChange={onChange}
           placeholder={placeholder}
+          mask={mask}
         />
         {isPasswordType && (
-          <InputSlot onPress={isVisible ? hidePassword : showPassword}>
+          <InputSlot onPress={togglePassword}>
             {isVisible && <EyeOffIcon size={20} color="black" />}
             {!isVisible && <EyeOnIcon size={20} color="black" />}
           </InputSlot>

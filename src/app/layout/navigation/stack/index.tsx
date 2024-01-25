@@ -13,11 +13,6 @@ export const StackNavigation = () => {
     <Stack.Navigator>
       <Stack.Screen
         options={{ headerShown: false, gestureEnabled: false }}
-        name={Screens.MAIN}
-        component={DrawerNavigation}
-      />
-      <Stack.Screen
-        options={{ headerShown: false }}
         name={Screens.SIGN_IN}
         component={SignIn}
       />
@@ -25,6 +20,11 @@ export const StackNavigation = () => {
         options={{ headerShown: false }}
         name={Screens.SIGN_UP}
         component={SignUp}
+      />
+      <Stack.Screen
+        options={{ headerShown: false, gestureEnabled: false }}
+        name={Screens.MAIN}
+        component={DrawerNavigation}
       />
     </Stack.Navigator>
   );

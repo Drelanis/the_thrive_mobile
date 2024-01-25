@@ -2,7 +2,7 @@ import { FactoryApi } from './FactoryApi';
 
 import { CompanyType } from '$configs';
 
-class CompanyApi extends FactoryApi {
+class Company extends FactoryApi {
   constructor() {
     super('http://localhost:3000');
   }
@@ -17,6 +17,11 @@ class CompanyApi extends FactoryApi {
     const currentCompany = data.find((company) => company.email === email);
     return currentCompany;
   }
+
+  public async create(companyDto: CompanyType): Promise<CompanyType> {
+    const data = await this.post('/companies', companyDto);
+    return data;
+  }
 }
 
-export const companyApi = new CompanyApi();
+export const companyApi = new Company();

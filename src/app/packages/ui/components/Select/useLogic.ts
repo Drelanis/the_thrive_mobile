@@ -13,6 +13,7 @@ export const useLogic = <Type extends FieldValues>(params: Params<Type>) => {
 
   const {
     field: { value },
+    fieldState: { error },
   } = useController({
     name,
     control,
@@ -20,5 +21,5 @@ export const useLogic = <Type extends FieldValues>(params: Params<Type>) => {
 
   const inputValues = handleSelectedValues(value);
 
-  return { inputValues };
+  return { inputValues, error };
 };

@@ -11,4 +11,5 @@ export type InputProps<Type extends FieldValues> = {
   placeholder?: string;
   title?: string;
   type?: InputType;
+  mask?: string;
 };
