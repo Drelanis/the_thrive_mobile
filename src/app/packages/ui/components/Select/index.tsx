@@ -1,5 +1,5 @@
 import { Heading, HStack, Icon, Text, VStack } from '@gluestack-ui/themed';
-import { FieldValues } from 'react-hook-form';
+import { FieldError, FieldValues } from 'react-hook-form';
 import { StyleSheet } from 'react-native';
 
 import { SelectProps } from './types';
@@ -12,6 +12,8 @@ export const Select = <Type extends FieldValues>(props: SelectProps<Type>) => {
   const { label, onPress, ...restProps } = props;
 
   const { inputValues, error } = useLogic(restProps);
+
+  const styles = useStyles(error);
 
   return (
     <VStack>
@@ -34,25 +36,30 @@ export const Select = <Type extends FieldValues>(props: SelectProps<Type>) => {
   );
 };
 
-const styles = StyleSheet.create({
-  pressableContainer: {
-    borderTopRightRadius: 10,
-    borderTopLeftRadius: 10,
-  },
-  container: {
-    alignItems: 'center',
-    width: '100%',
-    paddingHorizontal: 16,
-    paddingBottom: 16,
-    borderBottomWidth: 1,
-  },
-  inputContainer: {
-    gap: 4,
-  },
-  label: {
-    width: '100%',
-  },
-  icon: {
-    marginLeft: 'auto',
-  },
-});
+const useStyles = (error?: FieldError) => {
+  const styles = StyleSheet.create({
+    pressableContainer: {
+      borderTopRightRadius: 10,
+      borderTopLeftRadius: 10,
+    },
+    container: {
+      alignItems: 'center',
+      width: '100%',
+      paddingHorizontal: 16,
+      paddingBottom: 16,
+      borderBottomWidth: 1,
+      borderColor: error?.message ? 'red' : 'black',
+    },
+    inputContainer: {
+      gap: 4,
+    },
+    label: {
+      width: '100%',
+    },
+    icon: {
+      marginLeft: 'auto',
+    },
+  });
+
+  return styles;
+};
