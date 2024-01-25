@@ -2,7 +2,7 @@ import { FactoryApi } from './FactoryApi';
 
 import { CompanyType } from '$configs';
 
-class CompanyApi extends FactoryApi {
+class Company extends FactoryApi {
   constructor() {
     super('http://localhost:3000');
   }
@@ -19,4 +19,4 @@ class CompanyApi extends FactoryApi {
   }
 }
 
-export const companyApi = new CompanyApi();
+export const companyApi = new Company();
