@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import { FieldValues, useController } from 'react-hook-form';
 
 import { InputProps, InputType } from './types';
@@ -9,31 +9,27 @@ type Params<Type extends FieldValues> = Pick<
 >;
 
 export const useLogic = <Type extends FieldValues>(params: Params<Type>) => {
-  const { control, name, type } = params;
+  const { control, name, type = InputType.TEXT } = params;
 
   const [isVisible, setVisible] = useState(false);
-
-  const showPassword = () => setVisible(true);
-
-  const hidePassword = () => setVisible(false);
-
-  const isPasswordType = type === InputType.PASSWORD;
-
-  const isShowPassword = isVisible ? InputType.TEXT : InputType.PASSWORD;
 
   const {
     field: { value, onChange },
     fieldState: { error },
   } = useController({ name, control });
 
+  const isPasswordType = type === InputType.PASSWORD;
+
+  const togglePassword = useCallback(() => {
+    setVisible((prev) => !prev);
+  }, [setVisible]);
+
   return {
     value,
     error,
     isVisible,
     isPasswordType,
-    isShowPassword,
-    showPassword,
-    hidePassword,
     onChange,
+    togglePassword,
   };
 };

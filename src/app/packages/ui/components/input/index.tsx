@@ -15,18 +15,10 @@ import { useLogic } from './useLogic';
 import { EyeOffIcon, EyeOnIcon } from '$icons';
 
 export const Input = <Type extends FieldValues>(props: InputProps<Type>) => {
-  const { placeholder, name, control, title, type } = props;
+  const { placeholder, name, control, title, type = InputType.TEXT } = props;
 
-  const {
-    isVisible,
-    value,
-    error,
-    isPasswordType,
-    isShowPassword,
-    onChange,
-    hidePassword,
-    showPassword,
-  } = useLogic({ name, control, type });
+  const { isVisible, value, error, isPasswordType, onChange, togglePassword } =
+    useLogic({ name, control, type });
 
   const styles = useStyles(error);
 
@@ -35,7 +27,7 @@ export const Input = <Type extends FieldValues>(props: InputProps<Type>) => {
       {title && <Text>{title}</Text>}
       <GluestackInput isInvalid={Boolean(error)} variant="underlined" size="md">
         <InputField
-          type={isPasswordType ? isShowPassword : InputType.TEXT}
+          type={isVisible ? InputType.TEXT : type}
           value={value}
           onChangeText={onChange}
           autoCorrect={false}
@@ -43,7 +35,7 @@ export const Input = <Type extends FieldValues>(props: InputProps<Type>) => {
           placeholder={placeholder}
         />
         {isPasswordType && (
-          <InputSlot onPress={isVisible ? hidePassword : showPassword}>
+          <InputSlot onPress={togglePassword}>
             {isVisible && <EyeOffIcon size={20} color="black" />}
             {!isVisible && <EyeOnIcon size={20} color="black" />}
           </InputSlot>
