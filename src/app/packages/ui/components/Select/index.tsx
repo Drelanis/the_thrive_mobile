@@ -11,23 +11,26 @@ import { Pressable } from '$ui/components/Pressable';
 export const Select = <Type extends FieldValues>(props: SelectProps<Type>) => {
   const { label, onPress, ...restProps } = props;
 
-  const { inputValues } = useLogic(restProps);
+  const { inputValues, error } = useLogic(restProps);
 
   return (
-    <Pressable
-      isPressedBackground="rgb(210, 230, 255)"
-      notPressedBackground="rgb(255, 255, 255)"
-      style={styles.pressableContainer}
-      onPress={onPress}
-    >
-      <HStack style={styles.container}>
-        <VStack style={styles.inputContainer}>
-          <Heading size="sm">{label}</Heading>
-          <Text>{inputValues}</Text>
-        </VStack>
-        <Icon style={styles.icon} as={ChevronRightCircle} size="lg" />
-      </HStack>
-    </Pressable>
+    <VStack>
+      <Pressable
+        isPressedBackground="rgb(210, 230, 255)"
+        notPressedBackground="rgb(255, 255, 255)"
+        style={styles.pressableContainer}
+        onPress={onPress}
+      >
+        <HStack style={styles.container}>
+          <VStack style={styles.inputContainer}>
+            <Heading size="sm">{label}</Heading>
+            <Text>{inputValues}</Text>
+          </VStack>
+          <Icon style={styles.icon} as={ChevronRightCircle} size="lg" />
+        </HStack>
+      </Pressable>
+      <Text>{error?.message}</Text>
+    </VStack>
   );
 };
 
