@@ -1,4 +1,5 @@
 export * from './Button';
+export * from './Checkbox';
 export * from './CheckboxGroup';
 export * from './FullScreenModal';
 export * from './Header';
