@@ -22,6 +22,7 @@ export const Input = <Type extends FieldValues>(props: InputProps<Type>) => {
     title,
     type = InputType.TEXT,
     mask,
+    isDisabled,
   } = props;
 
   const { isVisible, value, error, isPasswordType, onChange, togglePassword } =
@@ -32,7 +33,12 @@ export const Input = <Type extends FieldValues>(props: InputProps<Type>) => {
   return (
     <VStack>
       {title && <Text>{title}</Text>}
-      <GluestackInput isInvalid={Boolean(error)} variant="underlined" size="md">
+      <GluestackInput
+        isDisabled={isDisabled}
+        isInvalid={Boolean(error)}
+        variant="underlined"
+        size="md"
+      >
         <InputField
           type={type}
           isVisible={isVisible}

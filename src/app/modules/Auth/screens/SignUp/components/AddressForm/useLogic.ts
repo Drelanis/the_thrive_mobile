@@ -26,6 +26,8 @@ export const useLogic = <Type extends FieldValues>(params: Params<Type>) => {
     control: formControl,
     formState: { isValid },
     getValues,
+    setValue: setFormValue,
+    watch,
   } = useForm({
     defaultValues: signUpStore.address,
     resolver: yupResolver(addressValidationSchema),
@@ -46,12 +48,16 @@ export const useLogic = <Type extends FieldValues>(params: Params<Type>) => {
     onApplyHandler();
   };
 
+  const isRemote = watch().remote;
+
   return {
     onSubmit,
+    setFormValue,
     formControl,
     isValid,
     isOpen,
     onCloseHandler,
     onOpenHandler,
+    isRemote,
   };
 };

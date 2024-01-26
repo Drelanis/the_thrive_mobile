@@ -18,6 +18,8 @@ export const AddressForm = <Type extends FieldValues>(
     isOpen,
     onCloseHandler,
     onOpenHandler,
+    setFormValue,
+    isRemote,
   } = useLogic({ name, setValue, ...restProps });
 
   return (
@@ -36,7 +38,13 @@ export const AddressForm = <Type extends FieldValues>(
           title: 'Address',
           goBack: onCloseHandler,
         }}
-        body={<Form control={formControl} />}
+        body={
+          <Form
+            setValue={setFormValue}
+            control={formControl}
+            isRemote={isRemote}
+          />
+        }
         footer={
           <Button isDisabled={!isValid} onPress={onSubmit}>
             Apply
