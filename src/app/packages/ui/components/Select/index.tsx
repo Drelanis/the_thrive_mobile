@@ -19,7 +19,7 @@ export const Select = <Type extends FieldValues>(props: SelectProps<Type>) => {
     <VStack>
       <Pressable
         isPressedBackground="rgb(210, 230, 255)"
-        notPressedBackground="rgb(255, 255, 255)"
+        notPressedBackground="rgb(242, 242, 242)"
         style={styles.pressableContainer}
         onPress={onPress}
       >
@@ -45,7 +45,6 @@ const useStyles = (error?: FieldError) => {
     container: {
       alignItems: 'center',
       width: '100%',
-      paddingHorizontal: 16,
       paddingBottom: 16,
       borderBottomWidth: 1,
       borderColor: error?.message ? 'red' : 'black',
