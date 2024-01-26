@@ -1,9 +1,8 @@
 import { ScrollView, VStack } from '@gluestack-ui/themed';
 import { useNavigation } from '@react-navigation/native';
 import { StyleSheet } from 'react-native';
-import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-import { SelectDirections } from './components';
+import { AddressForm, SelectDirections } from './components';
 import { useLogic } from './useLogic';
 
 import { signUpStore } from '$app/stores';
@@ -14,7 +13,8 @@ export const SignUp = () => {
 
   const { goBack } = useNavigation();
 
-  const { control, getValues, resetField, isValid, onSubmit } = useLogic();
+  const { control, getValues, resetField, isValid, onSubmit, setValue } =
+    useLogic();
 
   return (
     <>
@@ -56,6 +56,14 @@ export const SignUp = () => {
             name="directions"
             control={control}
           />
+          <AddressForm
+            initialState={signUpStore.signUp.location}
+            getValues={getValues}
+            resetField={resetField}
+            control={control}
+            name="location"
+            setValue={setValue}
+          />
           <Input
             type={InputType.TEXT}
             placeholder="Enter your number of employees"
@@ -73,13 +81,10 @@ export const SignUp = () => {
 };
 
 const useStyles = () => {
-  const { top } = useSafeAreaInsets();
-
   const styles = StyleSheet.create({
     container: {
       flex: 1,
       padding: 16,
-      marginTop: top,
     },
     form: {
       gap: 40,
