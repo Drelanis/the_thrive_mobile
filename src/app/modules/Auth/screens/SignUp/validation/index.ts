@@ -23,5 +23,6 @@ export const signUpValidationSchema = yup.object({
     .array(yup.string())
     .required()
     .min(1, ValidationHints.REQUIRED),
+  location: yup.string().required(ValidationHints.REQUIRED),
   numberOfEmployees: yup.string().required(ValidationHints.REQUIRED),
 });
