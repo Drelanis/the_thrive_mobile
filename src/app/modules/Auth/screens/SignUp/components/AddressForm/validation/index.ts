@@ -4,7 +4,20 @@ import { ValidationHints } from '$packages/configs';
 
 export const addressValidationSchema = yup.object({
   country: yup.string().required(ValidationHints.REQUIRED),
-  city: yup.string().required(ValidationHints.REQUIRED),
-  street: yup.string().required(ValidationHints.REQUIRED),
-  buildingNumber: yup.string().required(ValidationHints.REQUIRED),
+  remote: yup.boolean().required(),
+  city: yup.string().when('remote', {
+    is: false,
+    then: (schema) => schema.required(ValidationHints.REQUIRED),
+    otherwise: (schema) => schema,
+  }),
+  street: yup.string().when('remote', {
+    is: false,
+    then: (schema) => schema.required(ValidationHints.REQUIRED),
+    otherwise: (schema) => schema,
+  }),
+  buildingNumber: yup.string().when('remote', {
+    is: false,
+    then: (schema) => schema.required(ValidationHints.REQUIRED),
+    otherwise: (schema) => schema,
+  }),
 });
