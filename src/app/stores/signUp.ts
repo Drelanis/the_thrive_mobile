@@ -12,9 +12,10 @@ export type SignUpStoreType = {
   };
   address: {
     country: string;
-    city: string;
-    street: string;
-    buildingNumber: string;
+    remote: boolean;
+    city?: string;
+    street?: string;
+    buildingNumber?: string;
   };
 };
 
@@ -33,6 +34,7 @@ export const signUpStore: SignUpStoreType = {
     city: '',
     street: '',
     buildingNumber: '',
+    remote: false,
   },
 };
 

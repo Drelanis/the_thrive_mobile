@@ -12,4 +12,5 @@ export type InputProps<Type extends FieldValues> = {
   title?: string;
   type?: InputType;
   mask?: string;
+  isDisabled?: boolean;
 };
