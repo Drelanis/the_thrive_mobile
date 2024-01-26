@@ -8,6 +8,7 @@ export type LocationType = {
   city: string;
   street: string;
   buildingNumber: string;
+  remote: boolean;
 };
 
 export type CompanyType = {
