@@ -18,6 +18,7 @@ module.exports = function (api) {
             $packages: './src/app/packages',
             $configs: './src/configs',
             $utils: './src/app/utils',
+            $assets: './assets',
           },
           extensions: ['.js', '.jsx', '.ts', '.tsx'],
         },
