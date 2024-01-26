@@ -5,9 +5,31 @@
       "name": "company name",
       "email": "testtest@gmail.com",
       "password": "123456",
+      "directions": [
+        "Healthcare and Biotechnology"
+      ],
       "currency_id": "1",
       "createdAt": "",
       "updatedAt": ""
+    },
+    {
+      "id": "0.5564151758470988",
+      "name": "name",
+      "email": "email@g",
+      "password": "123",
+      "directions": [
+        "Telecommunications",
+        "Finance and Fintech"
+      ],
+      "currency_id": "1",
+      "location": {
+        "country": "country",
+        "city": "city",
+        "street": "street",
+        "buildingNumber": "123"
+      },
+      "createdAt": "2024-01-26T11:04:15.702Z",
+      "updatedAt": "2024-01-26T11:04:15.702Z"
     }
   ],
   "directions": [
