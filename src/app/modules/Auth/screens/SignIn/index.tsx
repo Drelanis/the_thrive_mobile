@@ -8,6 +8,7 @@ import { useLogic } from './useLogic';
 import { signInValidationSchema } from './validation';
 
 import { signInStore } from '$app/stores';
+import { ScreenBackground } from '$common';
 import { Button, ButtonVariants, KeyboardAvoidingView } from '$ui';
 
 export const SignIn = () => {
@@ -28,26 +29,28 @@ export const SignIn = () => {
   const { onSubmit, signUpRedirect } = useLogic({ getValues });
 
   return (
-    <KeyboardAvoidingView>
-      <VStack style={styles.container}>
-        <Heading>SIGN IN</Heading>
-        <Text>Enter your email and password</Text>
-        <SignInForm control={control} />
-        <Button onPress={onSubmit} isDisabled={!isValid}>
-          LOGIN
-        </Button>
-        <HStack style={styles.signUpContainer}>
-          <Text>Don&apos;t have an account?</Text>
-          <Button
-            onPress={signUpRedirect}
-            style={styles.signUpButton}
-            variant={ButtonVariants?.LINK}
-          >
-            Sign up
+    <ScreenBackground>
+      <KeyboardAvoidingView>
+        <VStack style={styles.container}>
+          <Heading>SIGN IN</Heading>
+          <Text>Enter your email and password</Text>
+          <SignInForm control={control} />
+          <Button onPress={onSubmit} isDisabled={!isValid}>
+            LOGIN
           </Button>
-        </HStack>
-      </VStack>
-    </KeyboardAvoidingView>
+          <HStack style={styles.signUpContainer}>
+            <Text>Don&apos;t have an account?</Text>
+            <Button
+              onPress={signUpRedirect}
+              style={styles.signUpButton}
+              variant={ButtonVariants?.LINK}
+            >
+              Sign up
+            </Button>
+          </HStack>
+        </VStack>
+      </KeyboardAvoidingView>
+    </ScreenBackground>
   );
 };
 
