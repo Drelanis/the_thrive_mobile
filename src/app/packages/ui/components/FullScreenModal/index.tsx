@@ -13,7 +13,7 @@ import { Header, HeaderProps } from '../Header';
 
 import { JsxElement } from '$common';
 
-export type Props = {
+type Props = {
   header: HeaderProps;
   isOpen: boolean;
   body?: JsxElement;
