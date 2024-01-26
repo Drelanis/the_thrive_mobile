@@ -5,6 +5,7 @@ import { StyleSheet } from 'react-native';
 import { AddressForm, SelectDirections } from './components';
 import { useLogic } from './useLogic';
 
+import { ScreenBackground } from '$app/packages/common';
 import { signUpStore } from '$app/stores';
 import { ArrowLeft, Button, Header, Input, InputType } from '$ui';
 
@@ -17,7 +18,7 @@ export const SignUp = () => {
     useLogic();
 
   return (
-    <>
+    <ScreenBackground>
       <Header
         goBack={goBack}
         goBackIcon={ArrowLeft}
@@ -76,7 +77,7 @@ export const SignUp = () => {
           </Button>
         </VStack>
       </ScrollView>
-    </>
+    </ScreenBackground>
   );
 };
 

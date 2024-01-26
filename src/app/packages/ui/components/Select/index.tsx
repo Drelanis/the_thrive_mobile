@@ -19,7 +19,7 @@ export const Select = <Type extends FieldValues>(props: SelectProps<Type>) => {
     <VStack>
       <Pressable
         isPressedBackground="rgb(210, 230, 255)"
-        notPressedBackground="rgb(242, 242, 242)"
+        notPressedBackground="transparent"
         style={styles.pressableContainer}
         onPress={onPress}
       >

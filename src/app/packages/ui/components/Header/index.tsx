@@ -46,7 +46,6 @@ export const useStyles = () => {
 
   return StyleSheet.create({
     view: {
-      borderBottomWidth: 1,
       marginTop: insets.top,
     },
     container: {
