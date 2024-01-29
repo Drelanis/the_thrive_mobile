@@ -6,5 +6,6 @@ export * from './Create';
 export * from './EyeOff';
 export * from './EyeOn';
 export * from './LightBulb';
+export * from './LogOut';
 export * from './Store';
 export * from './User';
