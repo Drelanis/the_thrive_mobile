@@ -1,7 +1,7 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-import { StoreIcon } from '$app/packages/ui';
 import { Company, Ideas, Store } from '$modules';
+import { LightBulbIcon, StoreIcon } from '$ui';
 
 const Tab = createBottomTabNavigator();
 
@@ -9,7 +9,7 @@ export const BottomNavigation = () => {
   return (
     <Tab.Navigator>
       <Tab.Screen
-        options={{ headerShown: false }}
+        options={{ headerShown: false, tabBarIcon: () => <LightBulbIcon /> }}
         name="Ideas"
         component={Ideas}
       />
