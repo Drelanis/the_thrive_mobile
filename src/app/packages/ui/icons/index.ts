@@ -7,3 +7,4 @@ export * from './EyeOff';
 export * from './EyeOn';
 export * from './LightBulb';
 export * from './Store';
+export * from './User';
