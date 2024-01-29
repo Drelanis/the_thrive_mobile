@@ -11,7 +11,7 @@ import { StyleSheet } from 'react-native';
 
 import { Header, HeaderProps } from '../Header';
 
-import { JsxElement } from '$common';
+import { JsxElement, ScreenBackground } from '$common';
 
 type Props = {
   header: HeaderProps;
@@ -28,11 +28,13 @@ export const FullScreenModal: FC<Props> = (props) => {
     <GluestackModal size="full" isOpen={isOpen}>
       <ModalBackdrop />
       <ModalContent style={styles.content}>
-        <Header {...header} />
-        <ScrollView>
-          <ModalBody style={!hasBodyPadding && styles.body}>{body}</ModalBody>
-        </ScrollView>
-        <ModalFooter style={styles.footer}>{footer}</ModalFooter>
+        <ScreenBackground>
+          <Header {...header} />
+          <ScrollView>
+            <ModalBody style={!hasBodyPadding && styles.body}>{body}</ModalBody>
+          </ScrollView>
+          <ModalFooter style={styles.footer}>{footer}</ModalFooter>
+        </ScreenBackground>
       </ModalContent>
     </GluestackModal>
   );
