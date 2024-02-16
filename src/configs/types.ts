@@ -5,10 +5,10 @@ export type DirectionType = {
 
 export type LocationType = {
   country: string;
-  city: string;
-  street: string;
-  buildingNumber: string;
   remote: boolean;
+  city?: string;
+  street?: string;
+  buildingNumber?: string;
 };
 
 export type CompanyType = {
