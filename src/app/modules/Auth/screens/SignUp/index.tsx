@@ -80,7 +80,11 @@ export const SignUp = () => {
               name="numberOfEmployees"
               mask="9999"
             />
-            <Button isDisabled={!isValid} onPress={onSubmit}>
+            <Button
+              style={styles.button}
+              isDisabled={!isValid}
+              onPress={onSubmit}
+            >
               REGISTRATE
             </Button>
           </VStack>
@@ -104,6 +108,9 @@ const useStyles = () => {
       margin: 12,
       borderWidth: 1,
       padding: 10,
+    },
+    button: {
+      marginBottom: 20,
     },
   });
 
