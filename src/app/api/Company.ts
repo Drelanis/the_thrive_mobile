@@ -8,18 +8,18 @@ class Company extends FactoryApi {
   }
 
   public async findAll(): Promise<CompanyType[]> {
-    const data = (await this.get(Routes.DIRECTIONS)) as CompanyType[];
+    const data = (await this.get(Routes.COMPANIES)) as CompanyType[];
     return data;
   }
 
   public async findOne(email: string): Promise<CompanyType | undefined> {
-    const data = (await this.get(Routes.DIRECTIONS)) as CompanyType[];
+    const data = (await this.get(Routes.COMPANIES)) as CompanyType[];
     const currentCompany = data.find((company) => company.email === email);
     return currentCompany;
   }
 
   public async create(companyDto: CompanyType): Promise<CompanyType> {
-    const data = await this.post(Routes.DIRECTIONS, companyDto);
+    const data = await this.post(Routes.COMPANIES, companyDto);
     return data;
   }
 }
