@@ -20,9 +20,9 @@ export const useLogic = <Type extends FieldValues>(params: Params<Type>) => {
 
   const isPasswordType = type === InputType.PASSWORD;
 
-  const togglePassword = useCallback(() => {
-    setVisible((prev) => !prev);
-  }, [setVisible]);
+  const showPassword = useCallback(() => setVisible(true), [setVisible]);
+
+  const hidePassword = useCallback(() => setVisible(false), [setVisible]);
 
   return {
     value,
@@ -30,6 +30,7 @@ export const useLogic = <Type extends FieldValues>(params: Params<Type>) => {
     isVisible,
     isPasswordType,
     onChange,
-    togglePassword,
+    showPassword,
+    hidePassword,
   };
 };

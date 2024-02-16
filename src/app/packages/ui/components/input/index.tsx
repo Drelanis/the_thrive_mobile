@@ -25,8 +25,15 @@ export const Input = <Type extends FieldValues>(props: InputProps<Type>) => {
     isDisabled,
   } = props;
 
-  const { isVisible, value, error, isPasswordType, onChange, togglePassword } =
-    useLogic({ name, control, type });
+  const {
+    isVisible,
+    value,
+    error,
+    isPasswordType,
+    onChange,
+    showPassword,
+    hidePassword,
+  } = useLogic({ name, control, type });
 
   const styles = useStyles(error);
 
@@ -49,7 +56,7 @@ export const Input = <Type extends FieldValues>(props: InputProps<Type>) => {
           mask={mask}
         />
         {isPasswordType && (
-          <InputSlot onPress={togglePassword}>
+          <InputSlot onPress={isVisible ? hidePassword : showPassword}>
             {isVisible && <EyeOffIcon size={20} color="black" />}
             {!isVisible && <EyeOnIcon size={20} color="black" />}
           </InputSlot>
