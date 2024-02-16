@@ -25,8 +25,8 @@ export const SignUp = () => {
     useLogic();
 
   return (
-    <KeyboardAvoidingView>
-      <ScreenBackground>
+    <ScreenBackground>
+      <KeyboardAvoidingView>
         <Header
           goBack={goBack}
           goBackIcon={ArrowLeft}
@@ -85,8 +85,8 @@ export const SignUp = () => {
             </Button>
           </VStack>
         </ScrollView>
-      </ScreenBackground>
-    </KeyboardAvoidingView>
+      </KeyboardAvoidingView>
+    </ScreenBackground>
   );
 };
 
