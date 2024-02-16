@@ -8,7 +8,7 @@ import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { StyleSheet } from 'react-native';
 
-import { Screens, ScreenStackType } from '$layout/types';
+import { Screens, ScreenStackType } from '$configs';
 import { LogOutIcon } from '$ui';
 
 export const LogoutItem = (props: DrawerContentComponentProps) => {

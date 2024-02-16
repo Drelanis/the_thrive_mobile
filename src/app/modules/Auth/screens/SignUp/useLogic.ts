@@ -11,7 +11,7 @@ import {
   SignUpStoreType,
   useSignUpCreationStore,
 } from '$app/stores';
-import { Screens, ScreenStackType } from '$layout/types';
+import { Screens, ScreenStackType } from '$configs';
 
 export const useLogic = () => {
   const { navigate } = useNavigation<StackNavigationProp<ScreenStackType>>();

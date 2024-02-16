@@ -22,3 +22,9 @@ export type CompanyType = {
   createdAt: Date;
   updatedAt: Date;
 };
+
+export type ScreenStackType = {
+  SignIn: undefined;
+  SignUp: undefined;
+  BottomNavigation: undefined;
+};

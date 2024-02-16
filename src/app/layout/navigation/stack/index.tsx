@@ -1,8 +1,8 @@
 import { createStackNavigator } from '@react-navigation/stack';
 
-import { Screens } from '../../types';
 import { DrawerNavigation } from '../Drawer';
 
+import { Screens } from '$configs';
 import { SignIn, SignUp } from '$modules';
 
 const Stack = createStackNavigator();

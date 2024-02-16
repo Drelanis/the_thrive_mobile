@@ -2,7 +2,7 @@ import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { useMemo } from 'react';
 
-import { Screens, ScreenStackType } from '$layout/types';
+import { Screens, ScreenStackType } from '$configs';
 
 type NavigateKeysType = {
   [Key in keyof ScreenStackType as `${Uncapitalize<string & Key>}Redirect`]: () => void;
