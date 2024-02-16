@@ -3,3 +3,9 @@ export enum Screens {
   SIGN_UP = 'SignUp',
   MAIN = 'BottomNavigation',
 }
+
+export enum Routes {
+  MAIN = 'http://localhost:3456',
+  COMPANIES = '/companies',
+  DIRECTIONS = '/directions',
+}
