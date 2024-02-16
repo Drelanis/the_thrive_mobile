@@ -4,7 +4,7 @@ import { DirectionType } from '$configs';
 
 class Direction extends FactoryApi {
   constructor() {
-    super('http://localhost:3000');
+    super('http://localhost:3456');
   }
 
   public async findAll(): Promise<DirectionType[]> {

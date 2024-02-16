@@ -4,7 +4,7 @@ import { CompanyType } from '$configs';
 
 class Company extends FactoryApi {
   constructor() {
-    super('http://localhost:3000');
+    super('http://localhost:3456');
   }
 
   public async findAll(): Promise<CompanyType[]> {

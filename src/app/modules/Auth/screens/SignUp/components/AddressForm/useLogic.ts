@@ -35,13 +35,19 @@ export const useLogic = <Type extends FieldValues>(params: Params<Type>) => {
   });
 
   const onSubmit = () => {
-    const { country, city, street, buildingNumber } = getValues();
+    const { country, city, street, buildingNumber, remote } = getValues();
 
     const address =
       `${country}, ${city}, ${street}, ${buildingNumber}` as PathValue<
         Type,
         Path<Type>
       >;
+
+    if (remote) {
+      setFormValue('city', '');
+      setFormValue('street', '');
+      setFormValue('buildingNumber', '');
+    }
 
     setAddress(getValues());
     setValue(name, address);

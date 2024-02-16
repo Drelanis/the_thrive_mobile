@@ -33,6 +33,7 @@ export const useLogic = () => {
 
   const onSubmit = async () => {
     const { name, email, password, directions } = getValues();
+
     await companyApi.create({
       id: `${Math.random()}`,
       name,
