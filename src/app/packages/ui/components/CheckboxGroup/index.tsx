@@ -5,6 +5,7 @@ import {
 } from '@gluestack-ui/themed';
 import { FieldValues } from 'react-hook-form';
 import { StyleSheet } from 'react-native';
+
 import { CheckboxGroupType } from './types';
 import { useLogic } from './useLogic';
 

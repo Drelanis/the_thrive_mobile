@@ -1,3 +1,4 @@
+/* eslint-disable import/order */
 import { createDrawerNavigator } from '@react-navigation/drawer';
 
 import { BottomNavigation } from '../Bottom';
