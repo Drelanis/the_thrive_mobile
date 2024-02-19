@@ -1,32 +1,14 @@
 import { Heading, HStack, Text, VStack } from '@gluestack-ui/themed';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { useForm } from 'react-hook-form';
 import { StyleSheet } from 'react-native';
 
 import { SignInForm } from './components';
 import { useLogic } from './useLogic';
-import { signInValidationSchema } from './validation';
 
-import { signInStore } from '$app/stores';
 import { ScreenBackground } from '$common';
 import { Button, ButtonVariants, KeyboardAvoidingView } from '$ui';
 
 export const SignIn = () => {
-  const {
-    control,
-    getValues,
-    formState: { isValid },
-  } = useForm({
-    values: {
-      email: 'testtest@gmail.com',
-      password: '123456',
-    },
-    defaultValues: signInStore,
-    resolver: yupResolver(signInValidationSchema),
-    mode: 'onChange',
-  });
-
-  const { onSubmit, signUpRedirect } = useLogic({ getValues });
+  const { onSubmit, signUpRedirect, control, isValid } = useLogic();
 
   return (
     <ScreenBackground>

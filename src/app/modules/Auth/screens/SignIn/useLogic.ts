@@ -1,16 +1,29 @@
-import { FieldValues, UseFormGetValues } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useForm } from 'react-hook-form';
 import { Alert } from 'react-native';
 
+import { signInValidationSchema } from './validation';
+
 import { companyApi } from '$app/api';
+import { signInStore } from '$app/stores';
 import { useRedirect } from '$common';
 
-type Params<Type extends FieldValues> = {
-  getValues: UseFormGetValues<Type>;
-};
-
-export const useLogic = <Type extends FieldValues>(params: Params<Type>) => {
-  const { getValues } = params;
+export const useLogic = () => {
   const { bottomNavigationRedirect, signUpRedirect } = useRedirect();
+
+  const {
+    control,
+    getValues,
+    formState: { isValid },
+  } = useForm({
+    values: {
+      email: 'testtest@gmail.com',
+      password: '123456',
+    },
+    defaultValues: signInStore,
+    resolver: yupResolver(signInValidationSchema),
+    mode: 'onChange',
+  });
 
   const onSubmit = async () => {
     const values = getValues();
@@ -25,5 +38,5 @@ export const useLogic = <Type extends FieldValues>(params: Params<Type>) => {
     bottomNavigationRedirect();
   };
 
-  return { onSubmit, signUpRedirect };
+  return { onSubmit, signUpRedirect, control, isValid };
 };
