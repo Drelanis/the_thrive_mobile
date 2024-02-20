@@ -28,3 +28,8 @@ export type ScreenStackType = {
   SignUp: undefined;
   BottomNavigation: undefined;
 };
+
+export type SignInResponseType = {
+  isError: boolean;
+  message: string;
+};
