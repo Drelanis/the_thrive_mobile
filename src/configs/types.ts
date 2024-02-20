@@ -30,6 +30,6 @@ export type ScreenStackType = {
 };
 
 export type SignInResponseType = {
-  isError: boolean;
-  message: string;
+  isError?: boolean;
+  message?: string;
 };
