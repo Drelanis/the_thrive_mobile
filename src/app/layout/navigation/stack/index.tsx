@@ -1,15 +1,22 @@
 import { createStackNavigator } from '@react-navigation/stack';
+import { useEffect } from 'react';
 
 import { DrawerNavigation } from '../Drawer';
 
+import { useRefresh } from '$app/packages/common';
 import { Screens } from '$configs';
 import { SignIn, SignUp } from '$modules';
 
 const Stack = createStackNavigator();
 
 export const StackNavigation = () => {
+  const { refreshSession } = useRefresh();
+
+  useEffect(() => {
+    refreshSession();
+  }, [refreshSession]);
+
   return (
-    // TODO move Drawer Navigation to the end
     <Stack.Navigator>
       <Stack.Screen
         options={{ headerShown: false, gestureEnabled: false }}
