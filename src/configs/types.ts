@@ -1,3 +1,5 @@
+import { UserRoles } from './constants';
+
 export type DirectionType = {
   direction: string;
   description: string;
@@ -32,4 +34,19 @@ export type ScreenStackType = {
 export type SignInResponseType = {
   isError?: boolean;
   message?: string;
+};
+
+export type UserType = {
+  name: string;
+  email: string;
+  image: string;
+  id: string;
+  role: UserRoles;
+  isTwoFactorEnabled: boolean;
+  emailVerified: string;
+};
+
+export type UserSessionType = {
+  user: UserType;
+  expires: string;
 };
