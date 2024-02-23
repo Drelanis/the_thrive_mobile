@@ -1,14 +1,24 @@
 import { Heading, HStack, Text, VStack } from '@gluestack-ui/themed';
+import { useContext, useEffect } from 'react';
 import { StyleSheet } from 'react-native';
 
 import { SignInForm } from './components';
 import { useLogic } from './useLogic';
 
-import { ScreenBackground } from '$common';
+import { SessionContext } from '$app/layout/providers/auth';
+import { ScreenBackground, useRedirect } from '$common';
 import { Button, ButtonVariants, KeyboardAvoidingView } from '$ui';
 
 export const SignIn = () => {
   const { onSubmit, signUpRedirect, control, isValid } = useLogic();
+  const { session } = useContext(SessionContext);
+  const { bottomNavigationRedirect } = useRedirect();
+
+  useEffect(() => {
+    if (session) {
+      bottomNavigationRedirect();
+    }
+  }, [session, bottomNavigationRedirect]);
 
   return (
     <ScreenBackground>
