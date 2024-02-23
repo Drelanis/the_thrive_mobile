@@ -1,12 +1,13 @@
 import { yupResolver } from '@hookform/resolvers/yup';
+import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import { Alert } from 'react-native';
 
 import { signInValidationSchema } from './validation';
 
-import { companyApi } from '$app/api';
 import { signInStore } from '$app/stores';
 import { useRedirect } from '$common';
+import { Routes, SignInResponseType } from '$configs';
 
 export const useLogic = () => {
   const { bottomNavigationRedirect, signUpRedirect } = useRedirect();
@@ -17,7 +18,7 @@ export const useLogic = () => {
     formState: { isValid },
   } = useForm({
     values: {
-      email: 'testtest@gmail.com',
+      email: 'denysbadaka@gmail.com',
       password: '123456',
     },
     defaultValues: signInStore,
@@ -28,10 +29,17 @@ export const useLogic = () => {
   const onSubmit = async () => {
     const values = getValues();
 
-    const company = await companyApi.findOne(values.email);
+    const { data } = await axios.get<SignInResponseType>(Routes.SIGN_IN, {
+      params: { ...values },
+    });
+    if (typeof data === 'string') {
+      Alert.alert('Something went wrong');
 
-    if (!company) {
+      return;
+    }
+    if (data.isError) {
       Alert.alert("Email or password isn't correct");
+
       return;
     }
 
