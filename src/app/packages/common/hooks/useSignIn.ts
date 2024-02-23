@@ -1,15 +1,20 @@
 import axios from 'axios';
+import { useContext } from 'react';
 import { Alert } from 'react-native';
 
-import { useRedirect } from './useRedirect';
+import { useRefresh } from './useRefresh';
 
+import { LoadingContext } from '$app/layout/providers/loader';
 import { SignInStoreType } from '$app/stores';
 import { ResponseType, Routes } from '$configs';
 
 export const useSignIn = () => {
-  const { bottomNavigationRedirect } = useRedirect();
+  const { setLoading } = useContext(LoadingContext);
+  const { refreshSession } = useRefresh();
 
   const onSingIn = async (signInDto: SignInStoreType) => {
+    setLoading(true);
+
     const { data } = await axios.post<ResponseType>(Routes.SIGN_IN, {
       ...signInDto,
     });
@@ -20,7 +25,9 @@ export const useSignIn = () => {
       return;
     }
 
-    bottomNavigationRedirect();
+    await refreshSession();
+
+    setLoading(false);
   };
 
   return { onSingIn };
