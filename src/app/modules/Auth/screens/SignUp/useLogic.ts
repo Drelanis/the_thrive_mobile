@@ -1,22 +1,13 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useNavigation } from '@react-navigation/native';
-import { StackNavigationProp } from '@react-navigation/stack';
 import { useForm } from 'react-hook-form';
 
 import { signUpValidationSchema } from './validation';
 
-import { companyApi } from '$app/api';
-import {
-  signUpStore,
-  SignUpStoreType,
-  useSignUpCreationStore,
-} from '$app/stores';
-import { Screens, ScreenStackType } from '$configs';
+import { useSignUp } from '$app/packages/common/hooks/useSignUp';
+import { signUpStore, SignUpStoreType } from '$app/stores';
 
 export const useLogic = () => {
-  const { navigate } = useNavigation<StackNavigationProp<ScreenStackType>>();
-
-  const { address } = useSignUpCreationStore();
+  const { onSingUp } = useSignUp();
 
   const {
     control,
@@ -25,27 +16,17 @@ export const useLogic = () => {
     formState: { isValid },
     reset,
     setValue,
-  } = useForm<SignUpStoreType['signUp']>({
+  } = useForm<SignUpStoreType>({
     resolver: yupResolver(signUpValidationSchema),
-    defaultValues: signUpStore.signUp,
+    defaultValues: signUpStore,
     mode: 'onChange',
   });
 
   const onSubmit = async () => {
-    const { name, email, password, directions } = getValues();
+    const signUpDto = getValues();
 
-    await companyApi.create({
-      id: `${Math.random()}`,
-      name,
-      email,
-      password,
-      directions,
-      currency_id: '1',
-      location: address,
-      createdAt: new Date(),
-      updatedAt: new Date(),
-    });
-    navigate(Screens.SIGN_IN);
+    await onSingUp(signUpDto);
+
     reset();
   };
 

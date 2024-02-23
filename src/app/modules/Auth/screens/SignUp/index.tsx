@@ -2,11 +2,9 @@ import { ScrollView, VStack } from '@gluestack-ui/themed';
 import { useNavigation } from '@react-navigation/native';
 import { StyleSheet } from 'react-native';
 
-import { AddressForm, SelectDirections } from './components';
 import { useLogic } from './useLogic';
 
 import { ScreenBackground } from '$app/packages/common';
-import { signUpStore } from '$app/stores';
 import {
   ArrowLeft,
   Button,
@@ -21,8 +19,7 @@ export const SignUp = () => {
 
   const { goBack } = useNavigation();
 
-  const { control, getValues, resetField, isValid, onSubmit, setValue } =
-    useLogic();
+  const { control, isValid, onSubmit } = useLogic();
 
   return (
     <ScreenBackground>
@@ -36,13 +33,19 @@ export const SignUp = () => {
           <VStack style={styles.form}>
             <Input
               type={InputType.TEXT}
-              placeholder="Enter your company name"
+              placeholder="Enter your first name"
               control={control}
-              name="name"
+              name="firstName"
             />
             <Input
               type={InputType.TEXT}
-              placeholder="Enter your company email"
+              placeholder="Enter your first name"
+              control={control}
+              name="lastName"
+            />
+            <Input
+              type={InputType.TEXT}
+              placeholder="Enter your last email"
               control={control}
               name="email"
             />
@@ -57,28 +60,6 @@ export const SignUp = () => {
               placeholder="Repeat your password"
               control={control}
               name="repeatPassword"
-            />
-            <SelectDirections
-              initialState={signUpStore.signUp.directions}
-              getValues={getValues}
-              resetField={resetField}
-              name="directions"
-              control={control}
-            />
-            <AddressForm
-              initialState={signUpStore.signUp.location}
-              getValues={getValues}
-              resetField={resetField}
-              control={control}
-              name="location"
-              setValue={setValue}
-            />
-            <Input
-              type={InputType.TEXT}
-              placeholder="Enter your number of employees"
-              control={control}
-              name="numberOfEmployees"
-              mask="9999"
             />
             <Button
               style={styles.button}
