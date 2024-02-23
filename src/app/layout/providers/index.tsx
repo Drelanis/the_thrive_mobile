@@ -5,6 +5,7 @@ import { PropsWithChildren, useState } from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 import { SessionContext } from './auth';
+import { LoadingContext } from './loader';
 
 import { UserSessionType } from '$configs';
 
@@ -12,15 +13,18 @@ export const AppProviders = (props: PropsWithChildren) => {
   const { children } = props;
 
   const [session, setSession] = useState<UserSessionType | null>(null);
+  const [isLoading, setLoading] = useState<boolean>(false);
 
   return (
     <SafeAreaProvider>
       <GluestackUIProvider config={config}>
-        <NavigationContainer>
-          <SessionContext.Provider value={{ session, setSession }}>
-            {children}
-          </SessionContext.Provider>
-        </NavigationContainer>
+        <LoadingContext.Provider value={{ isLoading, setLoading }}>
+          <NavigationContainer>
+            <SessionContext.Provider value={{ session, setSession }}>
+              {children}
+            </SessionContext.Provider>
+          </NavigationContainer>
+        </LoadingContext.Provider>
       </GluestackUIProvider>
     </SafeAreaProvider>
   );

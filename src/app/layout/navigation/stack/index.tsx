@@ -1,9 +1,10 @@
 import { createStackNavigator } from '@react-navigation/stack';
-import { useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 
 import { DrawerNavigation } from '../Drawer';
 
-import { useRefresh } from '$app/packages/common';
+import { LoadingContext } from '$app/layout/providers/loader';
+import { ScreenLoader, useRefresh } from '$app/packages/common';
 import { Screens } from '$configs';
 import { SignIn, SignUp } from '$modules';
 
@@ -11,10 +12,15 @@ const Stack = createStackNavigator();
 
 export const StackNavigation = () => {
   const { refreshSession } = useRefresh();
+  const { isLoading } = useContext(LoadingContext);
 
   useEffect(() => {
     refreshSession();
   }, [refreshSession]);
+
+  if (isLoading) {
+    return <ScreenLoader />;
+  }
 
   return (
     <Stack.Navigator>
