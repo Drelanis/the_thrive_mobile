@@ -22,9 +22,10 @@ export const useLogic = () => {
     formState: { isValid },
     setValue,
   } = useForm({
+    // TODO Delete values
     values: {
       email: 'denysbadaka@gmail.com',
-      password: '123456',
+      password: '1234567',
       isTwoFactor: false,
     },
     defaultValues: signInStore,
