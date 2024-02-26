@@ -3,6 +3,7 @@ import { GluestackUIProvider } from '@gluestack-ui/themed';
 import { NavigationContainer } from '@react-navigation/native';
 import { PropsWithChildren, useState } from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import Toast from 'react-native-toast-message';
 
 import { SessionContext } from './auth';
 import { LoadingContext } from './loader';
@@ -22,6 +23,7 @@ export const AppProviders = (props: PropsWithChildren) => {
           <NavigationContainer>
             <SessionContext.Provider value={{ session, setSession }}>
               {children}
+              <Toast />
             </SessionContext.Provider>
           </NavigationContainer>
         </LoadingContext.Provider>
