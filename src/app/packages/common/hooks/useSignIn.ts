@@ -16,8 +16,6 @@ export const useSignIn = () => {
   const { refreshSession } = useRefresh();
 
   const onSingIn = async (signInDto: Omit<SignInStoreType, 'isTwoFactor'>) => {
-    setIsTwoFactor(true);
-
     const { data } = await axios.post<SignInResponseType>(Routes.SIGN_IN, {
       ...signInDto,
     });
