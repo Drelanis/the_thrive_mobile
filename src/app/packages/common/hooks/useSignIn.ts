@@ -7,7 +7,7 @@ import { useRefresh } from './useRefresh';
 
 import { LoadingContext } from '$app/layout/providers/loader';
 import { SignInStoreType } from '$app/stores';
-import { Routes, SignInResponseType } from '$configs';
+import { ResponseType, Routes } from '$configs';
 
 export const useSignIn = () => {
   const { setLoading } = useContext(LoadingContext);
@@ -16,7 +16,7 @@ export const useSignIn = () => {
   const { refreshSession } = useRefresh();
 
   const onSingIn = async (signInDto: Omit<SignInStoreType, 'isTwoFactor'>) => {
-    const { data } = await axios.post<SignInResponseType>(Routes.SIGN_IN, {
+    const { data } = await axios.post<ResponseType>(Routes.SIGN_IN, {
       ...signInDto,
     });
 
