@@ -4,7 +4,6 @@ import {
   ModalBody,
   ModalContent,
   ModalFooter,
-  ScrollView,
 } from '@gluestack-ui/themed';
 import { FC } from 'react';
 import { StyleSheet } from 'react-native';
@@ -30,9 +29,7 @@ export const FullScreenModal: FC<Props> = (props) => {
       <ModalContent style={styles.content}>
         <ScreenBackground>
           <Header {...header} />
-          <ScrollView>
-            <ModalBody style={!hasBodyPadding && styles.body}>{body}</ModalBody>
-          </ScrollView>
+          <ModalBody style={!hasBodyPadding && styles.body}>{body}</ModalBody>
           <ModalFooter style={styles.footer}>{footer}</ModalFooter>
         </ScreenBackground>
       </ModalContent>
