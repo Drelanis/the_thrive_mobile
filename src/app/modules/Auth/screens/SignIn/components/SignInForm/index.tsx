@@ -7,10 +7,11 @@ import { Input, InputType } from '$ui';
 
 type Props = {
   control: Control<SignInStoreType>;
+  isTwoFactor: boolean;
 };
 
 export const SignInForm = (props: Props) => {
-  const { control } = props;
+  const { control, isTwoFactor } = props;
 
   return (
     <VStack style={styles.container}>
@@ -26,6 +27,13 @@ export const SignInForm = (props: Props) => {
         name="password"
         type={InputType.PASSWORD}
       />
+      {isTwoFactor && (
+        <Input
+          placeholder="Enter two-factor code"
+          control={control}
+          name="twoFactorCode"
+        />
+      )}
     </VStack>
   );
 };

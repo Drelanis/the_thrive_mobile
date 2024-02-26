@@ -1,24 +1,15 @@
 import { Heading, HStack, Text, VStack } from '@gluestack-ui/themed';
-import { useContext, useEffect } from 'react';
 import { StyleSheet } from 'react-native';
 
 import { SignInForm } from './components';
 import { useLogic } from './useLogic';
 
-import { SessionContext } from '$app/layout/providers/auth';
-import { ScreenBackground, useRedirect } from '$common';
+import { ScreenBackground } from '$common';
 import { Button, ButtonVariants, KeyboardAvoidingView } from '$ui';
 
 export const SignIn = () => {
-  const { onSubmit, signUpRedirect, control, isValid } = useLogic();
-  const { session } = useContext(SessionContext);
-  const { bottomNavigationRedirect } = useRedirect();
-
-  useEffect(() => {
-    if (session) {
-      bottomNavigationRedirect();
-    }
-  }, [session, bottomNavigationRedirect]);
+  const { onSubmit, signUpRedirect, control, isValid, isTwoFactor } =
+    useLogic();
 
   return (
     <ScreenBackground>
@@ -26,7 +17,7 @@ export const SignIn = () => {
         <VStack style={styles.container}>
           <Heading>SIGN IN</Heading>
           <Text>Enter your email and password</Text>
-          <SignInForm control={control} />
+          <SignInForm control={control} isTwoFactor={isTwoFactor} />
           <Button onPress={onSubmit} isDisabled={!isValid}>
             LOGIN
           </Button>
@@ -52,7 +43,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     padding: 16,
-    gap: 90,
+    gap: 50,
   },
   signUpContainer: {
     alignItems: 'center',

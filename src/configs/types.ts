@@ -31,9 +31,10 @@ export type ScreenStackType = {
   BottomNavigation: undefined;
 };
 
-export type ResponseType = {
+export type SignInResponseType = {
+  message: string;
   isError?: boolean;
-  message?: string;
+  isTwoFactor?: boolean;
 };
 
 export type UserType = {
