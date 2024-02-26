@@ -2,6 +2,8 @@ import { VStack } from '@gluestack-ui/themed';
 import { Control } from 'react-hook-form';
 import { StyleSheet } from 'react-native';
 
+import { PasswordReset } from '../PasswordReset';
+
 import { SignInStoreType } from '$app/stores';
 import { Input, InputType } from '$ui';
 
@@ -21,12 +23,15 @@ export const SignInForm = (props: Props) => {
         control={control}
         name="email"
       />
-      <Input
-        placeholder="Enter your password"
-        control={control}
-        name="password"
-        type={InputType.PASSWORD}
-      />
+      <VStack style={styles.passwordContainer}>
+        <Input
+          placeholder="Enter your password"
+          control={control}
+          name="password"
+          type={InputType.PASSWORD}
+        />
+        <PasswordReset />
+      </VStack>
       {isTwoFactor && (
         <Input
           placeholder="Enter two-factor code"
@@ -42,5 +47,8 @@ const styles = StyleSheet.create({
   container: {
     width: '100%',
     gap: 30,
+  },
+  passwordContainer: {
+    gap: 26,
   },
 });
