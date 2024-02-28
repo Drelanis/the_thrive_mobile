@@ -1,17 +1,22 @@
-import { Center, Text } from '@gluestack-ui/themed';
+import { ScrollView } from '@gluestack-ui/themed';
 import { StyleSheet } from 'react-native';
+
+import { CompanyCreator } from './components';
 
 export const Company = () => {
   return (
-    <Center style={styles.container}>
-      <Text>Company Screen</Text>
-      <Text>Still in progress</Text>
-    </Center>
+    <ScrollView style={styles.container}>
+      {/* <Button>Join the company</Button>
+      <Text style={styles.text}>OR</Text> */}
+      <CompanyCreator />
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    margin: 16,
   },
+  text: {},
 });

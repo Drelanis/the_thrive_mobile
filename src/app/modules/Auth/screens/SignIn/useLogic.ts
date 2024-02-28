@@ -25,7 +25,7 @@ export const useLogic = () => {
     // TODO Delete values
     values: {
       email: 'denysbadaka@gmail.com',
-      password: '1234567',
+      password: '123456',
       isTwoFactor: false,
     },
     defaultValues: signInStore,

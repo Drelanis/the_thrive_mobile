@@ -9,7 +9,7 @@ import { resetPasswordSchema } from './validation';
 
 import { LoadingContext } from '$app/layout/providers/loader';
 import { useModal } from '$app/packages/common';
-import { resetPasswordStore } from '$app/stores/resetPassword';
+import { resetPasswordStore } from '$app/stores';
 import { ResponseType, Routes } from '$configs';
 
 export const useLogic = () => {
