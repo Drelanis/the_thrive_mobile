@@ -1,2 +1,2 @@
-export * from './signIn';
-export * from './signUp';
+export * from './auth';
+export * from './types';
