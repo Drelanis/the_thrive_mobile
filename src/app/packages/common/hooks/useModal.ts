@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import {
   FieldValues,
   Path,
@@ -19,22 +19,33 @@ export const useModal = <Type extends FieldValues>(params: Params<Type>) => {
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
-  const [fieldState, setFieldState] =
-    useState<PathValue<Type, Path<Type>>>(initialState);
+  const fieldStateRef = useRef<PathValue<Type, Path<Type>>>(initialState);
 
-  const onOpenHandler = useCallback(() => {
+  const onOpenHandler = () => {
     setIsOpen(true);
-  }, []);
+  };
 
   const onApplyHandler = useCallback(() => {
     setIsOpen(false);
-    setFieldState(getValues(name));
-  }, [getValues, name]);
+
+    const updatedFieldState = getValues(name);
+
+    fieldStateRef.current = updatedFieldState;
+
+    if (updatedFieldState) {
+      resetField(name, { defaultValue: updatedFieldState });
+    }
+  }, [getValues, name, resetField]);
 
   const onCloseHandler = useCallback(() => {
     setIsOpen(false);
-    resetField(name, { defaultValue: fieldState });
-  }, [resetField, name, fieldState]);
+
+    resetField(name, { defaultValue: fieldStateRef.current });
+  }, [name, resetField]);
+
+  useEffect(() => {
+    resetField(name, { defaultValue: fieldStateRef.current });
+  }, [resetField, name, fieldStateRef]);
 
   return {
     isOpen,
