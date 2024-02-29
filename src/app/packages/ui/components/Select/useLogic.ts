@@ -5,21 +5,21 @@ import { SelectProps } from './types';
 
 type Params<Type extends FieldValues> = Pick<
   SelectProps<Type>,
-  'name' | 'control'
+  'name' | 'control' | 'value'
 >;
 
 export const useLogic = <Type extends FieldValues>(params: Params<Type>) => {
-  const { name, control } = params;
+  const { name, control, value } = params;
 
   const {
-    field: { value },
+    field: { value: controlValue },
     fieldState: { error },
   } = useController({
     name,
     control,
   });
 
-  const inputValues = handleSelectedValues(value);
+  const inputValues = handleSelectedValues(value ?? controlValue);
 
   return { inputValues, error };
 };
