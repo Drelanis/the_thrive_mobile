@@ -5,7 +5,6 @@ import {
   PathValue,
   UseFormGetValues,
   UseFormResetField,
-  UseFormSetValue,
 } from 'react-hook-form';
 
 export type AddressFormProps<Type extends FieldValues> = {
@@ -14,6 +13,5 @@ export type AddressFormProps<Type extends FieldValues> = {
   name: Path<Type>;
   getValues: UseFormGetValues<Type>;
   resetField: UseFormResetField<Type>;
-  setValue: UseFormSetValue<Type>;
   isValid: boolean;
 };
