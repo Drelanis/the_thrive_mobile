@@ -8,12 +8,11 @@ import { Button, Input, InputType } from '$ui';
 
 type Props<Type extends FieldValues> = {
   index: number;
-} & Pick<FormProps<Type>, 'control' | 'remove'>;
+  remove: () => void;
+} & Pick<FormProps<Type>, 'control'>;
 
 export const FormField = <Type extends FieldValues>(props: Props<Type>) => {
   const { index, control, remove } = props;
-
-  const onRemove = () => remove(index);
 
   return (
     <View style={styles.container}>
@@ -53,7 +52,7 @@ export const FormField = <Type extends FieldValues>(props: Props<Type>) => {
         control={control}
         name={`address.${index}.zipCode` as Path<Type>}
       />
-      <Button onPress={onRemove}>Remove address</Button>
+      <Button onPress={remove}>Remove address</Button>
     </View>
   );
 };

@@ -11,10 +11,14 @@ export const useLogic = <Type extends FieldValues>(params: FormProps<Type>) => {
 
   const addressFields = useMemo(() => {
     return fields.map((field, index) => {
+      const onRemove = () => {
+        remove(index);
+      };
+
       return (
         <FormField
           key={field.id}
-          remove={remove}
+          remove={onRemove}
           index={index}
           control={control}
         />
@@ -22,10 +26,9 @@ export const useLogic = <Type extends FieldValues>(params: FormProps<Type>) => {
     });
   }, [control, fields, remove]);
 
-  const appendField = useCallback(
-    () => append(officeAddressStore as FieldArray<Type, ArrayPath<Type>>),
-    [append],
-  );
+  const appendAddress = useCallback(() => {
+    append(officeAddressStore as FieldArray<Type, ArrayPath<Type>>);
+  }, [append]);
 
-  return { addressFields, appendField };
+  return { addressFields, appendAddress };
 };
