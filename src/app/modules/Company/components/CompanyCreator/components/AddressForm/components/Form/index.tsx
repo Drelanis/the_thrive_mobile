@@ -9,7 +9,7 @@ import { Button } from '$ui';
 export const Form = <Type extends FieldValues>(props: FormProps<Type>) => {
   const { fields, control, append, remove } = props;
 
-  const { addressFields, appendField } = useLogic({
+  const { addressFields, appendAddress } = useLogic({
     fields,
     control,
     remove,
@@ -19,7 +19,7 @@ export const Form = <Type extends FieldValues>(props: FormProps<Type>) => {
   return (
     <VStack>
       {addressFields}
-      <Button onPress={appendField}>Add new address</Button>
+      <Button onPress={appendAddress}>Add new address</Button>
     </VStack>
   );
 };

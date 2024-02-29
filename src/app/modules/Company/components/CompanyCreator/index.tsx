@@ -12,7 +12,6 @@ export const CompanyCreator = () => {
     control,
     getValues,
     resetField,
-    setValue,
     formState: { isValid },
   } = useForm({
     defaultValues: companyCreationInitialState,
@@ -43,7 +42,6 @@ export const CompanyCreator = () => {
         isValid={isValid}
         getValues={getValues}
         resetField={resetField}
-        setValue={setValue}
         initialState={companyCreationInitialState.address}
       />
     </VStack>

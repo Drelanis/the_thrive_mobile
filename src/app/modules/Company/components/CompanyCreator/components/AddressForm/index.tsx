@@ -1,4 +1,4 @@
-import { FieldValues, Path } from 'react-hook-form';
+import { FieldValues } from 'react-hook-form';
 
 import { Form } from './components';
 import { AddressFormProps } from './types';
@@ -9,32 +9,19 @@ import { ArrowLeft, Button, FullScreenModal, Select } from '$ui';
 export const AddressForm = <Type extends FieldValues>(
   props: AddressFormProps<Type>,
 ) => {
-  const {
-    control,
-    name,
-    setValue,
-    getValues,
-    resetField,
-    isValid,
-    initialState,
-  } = props;
+  const { control, isValid, name, ...restProps } = props;
 
   const {
     onOpenHandler,
-    append,
-    remove,
     isOpen,
     onCloseHandler,
-    fields,
     onSubmit,
+    selectValues,
+    ...restParams
   } = useLogic({
-    name,
-    setValue,
     control,
-    getValues,
-    resetField,
-    isValid,
-    initialState,
+    name,
+    ...restProps,
   });
 
   return (
@@ -43,7 +30,8 @@ export const AddressForm = <Type extends FieldValues>(
         onPress={onOpenHandler}
         label="Set the address"
         control={control}
-        name={'company.address' as Path<Type>}
+        value={selectValues}
+        name={name}
       />
       <FullScreenModal
         isOpen={isOpen}
@@ -53,14 +41,7 @@ export const AddressForm = <Type extends FieldValues>(
           title: 'Address',
           goBack: onCloseHandler,
         }}
-        body={
-          <Form
-            append={append}
-            remove={remove}
-            fields={fields}
-            control={control}
-          />
-        }
+        body={<Form control={control} {...restParams} />}
         footer={
           <Button isDisabled={!isValid} onPress={onSubmit}>
             Apply
