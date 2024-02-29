@@ -18,7 +18,6 @@ const companyCreatorStore: CompanyCreatorStoreType = {
   name: '',
   email: '',
   numberOfEmployee: '',
-  address: [],
   directions: '',
 };
 

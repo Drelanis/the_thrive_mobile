@@ -17,7 +17,6 @@ export type CompanyCreatorStoreType = {
   name: string;
   email: string;
   numberOfEmployee: string;
-  address: [];
   directions: string;
 };
 
