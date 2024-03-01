@@ -36,7 +36,7 @@ export const SelectBody = <Type extends FieldValues>(props: Props<Type>) => {
               <SelectDragIndicator />
             </SelectDragIndicatorWrapper>
             <SelectItem label="Ukraine" value="Ukraine" />
-            <SelectItem label="USE" value="USE" />
+            <SelectItem label="USA" value="USA" />
           </SelectContent>
         </SelectPortal>
       </SelectTrigger>
