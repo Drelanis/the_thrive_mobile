@@ -12,7 +12,7 @@ export const useLogic = <Type extends FieldValues>(params: Params<Type>) => {
 
   const {
     field: { value },
-    fieldState: { invalid },
+    fieldState: { invalid, error },
   } = useController({ control, name });
 
   const onChange = (selectValue: string) => {
@@ -22,5 +22,5 @@ export const useLogic = <Type extends FieldValues>(params: Params<Type>) => {
     });
   };
 
-  return { value, onChange, isInvalid: invalid };
+  return { value, onChange, isInvalid: invalid, errorMessage: error?.message };
 };

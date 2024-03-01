@@ -14,14 +14,12 @@ import { SelectBody } from './SelectBody';
 import { SingleSelectProps } from './types';
 import { useLogic } from './useLogic';
 
-import { ValidationHints } from '$app/packages/configs';
-
 export const SingleSelect = <Type extends FieldValues>(
   props: SingleSelectProps<Type>,
 ) => {
   const { control, name, setValue, label, helper } = props;
 
-  const { value, onChange, isInvalid } = useLogic({
+  const { value, onChange, isInvalid, errorMessage } = useLogic({
     control,
     name,
     setValue,
@@ -37,9 +35,7 @@ export const SingleSelect = <Type extends FieldValues>(
       </FormControlHelper>
       <SelectBody value={value} onChange={onChange} />
       <FormControlError>
-        <FormControlErrorText>
-          {isInvalid && ValidationHints.REQUIRED}
-        </FormControlErrorText>
+        <FormControlErrorText>{isInvalid && errorMessage}</FormControlErrorText>
       </FormControlError>
     </FormControl>
   );
