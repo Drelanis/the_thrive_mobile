@@ -17,12 +17,13 @@ import { useLogic } from './useLogic';
 export const SingleSelect = <Type extends FieldValues>(
   props: SingleSelectProps<Type>,
 ) => {
-  const { control, name, setValue, label, helper } = props;
+  const { control, name, setValue, label, helper, items } = props;
 
-  const { value, onChange, isInvalid, errorMessage } = useLogic({
+  const { value, onChange, isInvalid, errorMessage, selectItems } = useLogic({
     control,
     name,
     setValue,
+    items,
   });
 
   return (
@@ -33,7 +34,7 @@ export const SingleSelect = <Type extends FieldValues>(
       <FormControlHelper>
         <FormControlHelperText>{helper}</FormControlHelperText>
       </FormControlHelper>
-      <SelectBody value={value} onChange={onChange} />
+      <SelectBody value={value} onChange={onChange} items={selectItems} />
       <FormControlError>
         <FormControlErrorText>{isInvalid && errorMessage}</FormControlErrorText>
       </FormControlError>

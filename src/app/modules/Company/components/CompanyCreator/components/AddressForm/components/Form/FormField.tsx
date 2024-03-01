@@ -4,6 +4,7 @@ import { StyleSheet } from 'react-native';
 
 import { FormProps } from './type';
 
+import { COUNTRIES } from '$app/stores/company';
 import { Button, Input, InputType, SingleSelect } from '$ui';
 
 type Props<Type extends FieldValues> = {
@@ -18,6 +19,7 @@ export const FormField = <Type extends FieldValues>(props: Props<Type>) => {
     <View style={styles.container}>
       <SingleSelect
         control={control}
+        items={COUNTRIES}
         name={`address.${index}.country` as Path<Type>}
         label="Enter office country"
         helper="Ypu can choose only one country"

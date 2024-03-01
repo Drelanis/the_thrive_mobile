@@ -1,3 +1,4 @@
+// eslint-disable-next-line simple-import-sort/imports
 import {
   Icon,
   Select,
@@ -6,7 +7,6 @@ import {
   SelectDragIndicator,
   SelectDragIndicatorWrapper,
   SelectInput,
-  SelectItem,
   SelectPortal,
   SelectTrigger,
 } from '@gluestack-ui/themed';
@@ -15,15 +15,17 @@ import { StyleSheet } from 'react-native';
 
 import { ChevronDown } from '../../icons';
 
+import { JsxElement } from '$app/packages/common';
+
 type Props<Type extends FieldValues> = {
   onChange: (selectValue: string) => void;
   value: PathValue<Type, Path<Type>>;
+  items: JsxElement[];
 };
 
 export const SelectBody = <Type extends FieldValues>(props: Props<Type>) => {
-  const { onChange, value } = props;
+  const { onChange, value, items } = props;
 
-  // TODO Fetch items from Server
   return (
     <Select onValueChange={onChange}>
       <SelectTrigger>
@@ -35,8 +37,7 @@ export const SelectBody = <Type extends FieldValues>(props: Props<Type>) => {
             <SelectDragIndicatorWrapper>
               <SelectDragIndicator />
             </SelectDragIndicatorWrapper>
-            <SelectItem label="Ukraine" value="Ukraine" />
-            <SelectItem label="USA" value="USA" />
+            {items}
           </SelectContent>
         </SelectPortal>
       </SelectTrigger>
