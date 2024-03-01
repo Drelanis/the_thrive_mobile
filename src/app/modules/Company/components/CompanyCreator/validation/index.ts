@@ -29,4 +29,5 @@ export const companyCreationValidationSchema = yup.object({
     .array()
     .of(officeAddressValidationSchema)
     .min(1, ValidationHints.ADDRESS_EMPTY),
+  directions: yup.array().min(1, ValidationHints.DIRECTION_EMPTY),
 });

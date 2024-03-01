@@ -3,7 +3,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import { StyleSheet } from 'react-native';
 
-import { AddressForm } from './components';
+import { AddressForm, SelectDirections } from './components';
 import { companyCreationValidationSchema } from './validation';
 
 import { Button, Input } from '$app/packages/ui';
@@ -50,6 +50,15 @@ export const CompanyCreator = () => {
         setValue={setValue}
         initialState={companyCreationInitialState.address}
         trigger={trigger}
+      />
+      <SelectDirections
+        control={control}
+        name="directions"
+        initialState={companyCreationInitialState.directions}
+        getValues={getValues}
+        resetField={resetField}
+        trigger={trigger}
+        isValid={!errors.directions}
       />
       <Button onPress={() => {}} isDisabled={!isValid}>
         Create the company

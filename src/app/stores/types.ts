@@ -23,4 +23,5 @@ export type CompanyCreatorStoreType = {
 export type CompanyCreatorInitialStateType = {
   company: CompanyCreatorStoreType;
   address: OfficeAddressType[];
+  directions: string[];
 };

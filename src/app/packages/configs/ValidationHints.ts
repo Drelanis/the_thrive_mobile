@@ -5,5 +5,6 @@ export enum ValidationHints {
   MUST_BE_NUMERIC = 'Only numbers',
   MAX_LENGTH_6 = 'Value is too short, at least six characters',
   ADDRESS_EMPTY = 'At least one office address must be specified',
+  DIRECTION_EMPTY = 'At least one direction must be specified',
   INCORRECT_VALUE = 'Invalid field value',
 }
