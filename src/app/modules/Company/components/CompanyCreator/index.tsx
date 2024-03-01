@@ -1,10 +1,12 @@
 import { Heading, VStack } from '@gluestack-ui/themed';
+import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import { StyleSheet } from 'react-native';
 
 import { AddressForm } from './components';
+import { companyCreationValidationSchema } from './validation';
 
-import { Input } from '$app/packages/ui';
+import { Button, Input } from '$app/packages/ui';
 import { companyCreationInitialState } from '$app/stores/company';
 
 export const CompanyCreator = () => {
@@ -12,9 +14,12 @@ export const CompanyCreator = () => {
     control,
     getValues,
     resetField,
-    formState: { isValid },
+    setValue,
+    formState: { isValid, errors },
+    trigger,
   } = useForm({
     defaultValues: companyCreationInitialState,
+    resolver: yupResolver(companyCreationValidationSchema),
     mode: 'onChange',
   });
 
@@ -39,17 +44,22 @@ export const CompanyCreator = () => {
       <AddressForm
         control={control}
         name="address"
-        isValid={isValid}
+        isValid={!errors.address}
         getValues={getValues}
         resetField={resetField}
+        setValue={setValue}
         initialState={companyCreationInitialState.address}
+        trigger={trigger}
       />
+      <Button onPress={() => {}} isDisabled={!isValid}>
+        Create the company
+      </Button>
     </VStack>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    gap: 16,
+    gap: 26,
   },
 });

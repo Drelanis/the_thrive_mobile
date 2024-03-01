@@ -9,7 +9,7 @@ import { ArrowLeft, Button, FullScreenModal, Select } from '$ui';
 export const AddressForm = <Type extends FieldValues>(
   props: AddressFormProps<Type>,
 ) => {
-  const { control, isValid, name, ...restProps } = props;
+  const { control, isValid, name, setValue, ...restProps } = props;
 
   const {
     onOpenHandler,
@@ -21,6 +21,7 @@ export const AddressForm = <Type extends FieldValues>(
   } = useLogic({
     control,
     name,
+    isValid,
     ...restProps,
   });
 
@@ -41,7 +42,7 @@ export const AddressForm = <Type extends FieldValues>(
           title: 'Address',
           goBack: onCloseHandler,
         }}
-        body={<Form control={control} {...restParams} />}
+        body={<Form control={control} setValue={setValue} {...restParams} />}
         footer={
           <Button isDisabled={!isValid} onPress={onSubmit}>
             Apply

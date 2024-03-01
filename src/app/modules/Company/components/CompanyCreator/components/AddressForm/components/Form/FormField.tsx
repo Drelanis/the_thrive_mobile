@@ -4,23 +4,24 @@ import { StyleSheet } from 'react-native';
 
 import { FormProps } from './type';
 
-import { Button, Input, InputType } from '$ui';
+import { Button, Input, InputType, SingleSelect } from '$ui';
 
 type Props<Type extends FieldValues> = {
   index: number;
   remove: () => void;
-} & Pick<FormProps<Type>, 'control'>;
+} & Pick<FormProps<Type>, 'control' | 'setValue'>;
 
 export const FormField = <Type extends FieldValues>(props: Props<Type>) => {
-  const { index, control, remove } = props;
+  const { index, control, remove, setValue } = props;
 
   return (
     <View style={styles.container}>
-      <Input
-        type={InputType.TEXT}
-        placeholder="Enter office country"
+      <SingleSelect
         control={control}
         name={`address.${index}.country` as Path<Type>}
+        label="Enter office country"
+        helper="Ypu can choose only one country"
+        setValue={setValue}
       />
       <Input
         type={InputType.TEXT}
@@ -60,7 +61,7 @@ export const FormField = <Type extends FieldValues>(props: Props<Type>) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 16,
+    marginBottom: 16,
     gap: 30,
   },
 });

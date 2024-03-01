@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ArrayPath, FieldValues, useFieldArray } from 'react-hook-form';
 
 import { AddressFormProps } from './types';
@@ -7,9 +7,17 @@ import { OfficeAddressType } from '$app/stores';
 import { useModal } from '$common';
 
 export const useLogic = <Type extends FieldValues>(
-  params: Omit<AddressFormProps<Type>, 'isValid'>,
+  params: Omit<AddressFormProps<Type>, 'setValue'>,
 ) => {
-  const { name, control, getValues, resetField, initialState } = params;
+  const {
+    name,
+    control,
+    getValues,
+    resetField,
+    initialState,
+    trigger,
+    isValid,
+  } = params;
 
   const [selectValues, setSelectValues] = useState('');
 
@@ -17,6 +25,10 @@ export const useLogic = <Type extends FieldValues>(
     control,
     name: name as ArrayPath<Type>,
   });
+
+  useEffect(() => {
+    trigger(name);
+  }, [isValid, trigger, name, fields]);
 
   const { isOpen, onApplyHandler, onCloseHandler, onOpenHandler } = useModal({
     name,

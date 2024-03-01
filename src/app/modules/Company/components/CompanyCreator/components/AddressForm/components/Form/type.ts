@@ -5,6 +5,7 @@ import {
   FieldValues,
   UseFieldArrayAppend,
   UseFieldArrayRemove,
+  UseFormSetValue,
 } from 'react-hook-form';
 
 export type FormProps<Type extends FieldValues> = {
@@ -12,4 +13,5 @@ export type FormProps<Type extends FieldValues> = {
   fields: FieldArrayWithId<Type, ArrayPath<Type>, 'id'>[];
   append: UseFieldArrayAppend<Type, ArrayPath<Type>>;
   remove: UseFieldArrayRemove;
+  setValue: UseFormSetValue<Type>;
 };
