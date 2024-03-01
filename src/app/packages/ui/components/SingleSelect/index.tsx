@@ -17,7 +17,7 @@ import { useLogic } from './useLogic';
 export const SingleSelect = <Type extends FieldValues>(
   props: SingleSelectProps<Type>,
 ) => {
-  const { control, name, isValid, setValue } = props;
+  const { control, name, isValid, setValue, label, helper } = props;
 
   const { container } = useStyles({ isValid });
 
@@ -26,12 +26,10 @@ export const SingleSelect = <Type extends FieldValues>(
   return (
     <FormControl style={container} isInvalid={!isValid}>
       <FormControlLabel>
-        <FormControlLabelText>Choose company country</FormControlLabelText>
+        <FormControlLabelText>{label}</FormControlLabelText>
       </FormControlLabel>
       <FormControlHelper>
-        <FormControlHelperText>
-          You can only select one country
-        </FormControlHelperText>
+        <FormControlHelperText>{helper}</FormControlHelperText>
       </FormControlHelper>
       <SelectBody value={value} onChange={onChange} />
       <FormControlError>
