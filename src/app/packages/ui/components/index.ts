@@ -7,3 +7,4 @@ export * from './Input';
 export * from './KeyboardAvoidingView';
 export * from './Pressable';
 export * from './Select';
+export * from './SingleSelect';

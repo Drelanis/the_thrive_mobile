@@ -9,3 +9,4 @@ export * from './LightBulb';
 export * from './LogOut';
 export * from './Store';
 export * from './User';
+export * from './ChevronDown';
