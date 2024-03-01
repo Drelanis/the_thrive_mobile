@@ -12,11 +12,15 @@ export const useLogic = <Type extends FieldValues>(params: Params<Type>) => {
 
   const {
     field: { value },
+    fieldState: { invalid },
   } = useController({ control, name });
 
   const onChange = (selectValue: string) => {
-    setValue(name, selectValue as PathValue<Type, Path<Type>>);
+    setValue(name, selectValue as PathValue<Type, Path<Type>>, {
+      shouldValidate: true,
+      shouldDirty: true,
+    });
   };
 
-  return { value, onChange };
+  return { value, onChange, isInvalid: invalid };
 };

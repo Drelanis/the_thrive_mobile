@@ -5,6 +5,5 @@ export type SingleSelectProps<Type extends FieldValues> = {
   label: string;
   control: Control<Type>;
   name: Path<Type>;
-  isValid: boolean;
   setValue: UseFormSetValue<Type>;
 };

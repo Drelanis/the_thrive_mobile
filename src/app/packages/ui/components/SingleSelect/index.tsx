@@ -14,17 +14,21 @@ import { SelectBody } from './SelectBody';
 import { SingleSelectProps } from './types';
 import { useLogic } from './useLogic';
 
+import { ValidationHints } from '$app/packages/configs';
+
 export const SingleSelect = <Type extends FieldValues>(
   props: SingleSelectProps<Type>,
 ) => {
-  const { control, name, isValid, setValue, label, helper } = props;
+  const { control, name, setValue, label, helper } = props;
 
-  const { container } = useStyles({ isValid });
-
-  const { value, onChange } = useLogic({ control, name, setValue });
+  const { value, onChange, isInvalid } = useLogic({
+    control,
+    name,
+    setValue,
+  });
 
   return (
-    <FormControl style={container} isInvalid={!isValid}>
+    <FormControl style={styles.container} isInvalid={isInvalid}>
       <FormControlLabel>
         <FormControlLabelText>{label}</FormControlLabelText>
       </FormControlLabel>
@@ -33,18 +37,19 @@ export const SingleSelect = <Type extends FieldValues>(
       </FormControlHelper>
       <SelectBody value={value} onChange={onChange} />
       <FormControlError>
-        <FormControlErrorText>Required field</FormControlErrorText>
+        <FormControlErrorText>
+          {isInvalid && ValidationHints.REQUIRED}
+        </FormControlErrorText>
       </FormControlError>
     </FormControl>
   );
 };
 
-const useStyles = (params: { isValid: boolean }) => {
-  const { isValid } = params;
-
-  return StyleSheet.create({
-    container: {
-      marginBottom: isValid ? 0 : 20,
-    },
-  });
-};
+const styles = StyleSheet.create({
+  container: {
+    marginBottom: 0,
+    padding: 0,
+    gap: 0,
+    height: '15%',
+  },
+});
