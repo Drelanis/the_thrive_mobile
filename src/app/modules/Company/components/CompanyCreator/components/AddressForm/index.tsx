@@ -9,7 +9,7 @@ import { ArrowLeft, Button, FullScreenModal, Select } from '$ui';
 export const AddressForm = <Type extends FieldValues>(
   props: AddressFormProps<Type>,
 ) => {
-  const { control, isValid, name, setValue, ...restProps } = props;
+  const { control, isValid, name, setValue, setCountry, ...restProps } = props;
 
   const {
     onOpenHandler,
@@ -42,7 +42,14 @@ export const AddressForm = <Type extends FieldValues>(
           title: 'Address',
           goBack: onCloseHandler,
         }}
-        body={<Form control={control} setValue={setValue} {...restParams} />}
+        body={
+          <Form
+            control={control}
+            setValue={setValue}
+            setCountry={setCountry}
+            {...restParams}
+          />
+        }
         footer={
           <Button isDisabled={!isValid} onPress={onSubmit}>
             Apply

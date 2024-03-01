@@ -1,15 +1,19 @@
 import { Heading, VStack } from '@gluestack-ui/themed';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { StyleSheet } from 'react-native';
 
 import { AddressForm, SelectDirections } from './components';
-import { companyCreationValidationSchema } from './validation';
+import { getCompanyCreationValidationSchema } from './validation';
 
 import { Button, Input } from '$app/packages/ui';
 import { companyCreationInitialState } from '$app/stores/company';
+import { Countries } from '$configs';
 
 export const CompanyCreator = () => {
+  const [country, setCountry] = useState<Countries | null>(null);
+
   const {
     control,
     getValues,
@@ -19,7 +23,7 @@ export const CompanyCreator = () => {
     trigger,
   } = useForm({
     defaultValues: companyCreationInitialState,
-    resolver: yupResolver(companyCreationValidationSchema),
+    resolver: yupResolver(getCompanyCreationValidationSchema(country)),
     mode: 'onChange',
   });
 
@@ -50,6 +54,7 @@ export const CompanyCreator = () => {
         setValue={setValue}
         initialState={companyCreationInitialState.address}
         trigger={trigger}
+        setCountry={setCountry}
       />
       <SelectDirections
         control={control}

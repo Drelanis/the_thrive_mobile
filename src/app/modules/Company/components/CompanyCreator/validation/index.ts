@@ -1,5 +1,8 @@
 import * as yup from 'yup';
 
+import { ARRAY_OF_COUNTRIES } from '$app/stores/company';
+import { officeAddressValidationConfig } from '$app/stores/company/officeAddressValidationConfig';
+import { Countries } from '$configs';
 import { ValidationHints } from '$packages/configs';
 
 const companyValidationSchema = yup.object({
@@ -11,23 +14,39 @@ const companyValidationSchema = yup.object({
   numberOfEmployee: yup.string().required(ValidationHints.REQUIRED),
 });
 
-const officeAddressValidationSchema = yup.object({
+const officeAddressValidationSchema = {
   country: yup
     .string()
     .required(ValidationHints.REQUIRED)
-    .oneOf(['Ukraine', 'USA'], ValidationHints.INCORRECT_VALUE),
-  state: yup.string().required(ValidationHints.REQUIRED),
-  region: yup.string().required(ValidationHints.REQUIRED),
-  city: yup.string().required(ValidationHints.REQUIRED),
-  street: yup.string().required(ValidationHints.REQUIRED),
-  zipCode: yup.string().required(ValidationHints.REQUIRED),
-});
+    .oneOf(ARRAY_OF_COUNTRIES, ValidationHints.INCORRECT_VALUE),
+};
 
-export const companyCreationValidationSchema = yup.object({
-  company: companyValidationSchema,
-  address: yup
-    .array()
-    .of(officeAddressValidationSchema)
-    .min(1, ValidationHints.ADDRESS_EMPTY),
-  directions: yup.array().min(1, ValidationHints.DIRECTION_EMPTY),
-});
+const getOfficeAddressValidationSchema = (country: Countries | null) => {
+  if (!country) {
+    return yup.object({
+      ...officeAddressValidationSchema,
+    });
+  }
+
+  const addressSchema = officeAddressValidationConfig[country];
+
+  return yup.object({
+    ...officeAddressValidationSchema,
+    ...addressSchema,
+  });
+};
+
+export const getCompanyCreationValidationSchema = (
+  country: Countries | null,
+) => {
+  const validationSchema = yup.object({
+    company: companyValidationSchema,
+    address: yup
+      .array()
+      .of(getOfficeAddressValidationSchema(country))
+      .min(1, ValidationHints.ADDRESS_EMPTY),
+    directions: yup.array().min(1, ValidationHints.DIRECTION_EMPTY),
+  });
+
+  return validationSchema;
+};

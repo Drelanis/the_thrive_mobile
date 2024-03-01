@@ -7,7 +7,7 @@ import { OfficeAddressType } from '$app/stores';
 import { useModal } from '$common';
 
 export const useLogic = <Type extends FieldValues>(
-  params: Omit<AddressFormProps<Type>, 'setValue'>,
+  params: Omit<AddressFormProps<Type>, 'setValue' | 'setCountry'>,
 ) => {
   const {
     name,
