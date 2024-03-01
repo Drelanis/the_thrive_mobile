@@ -15,3 +15,8 @@ export enum Routes {
 export enum UserRoles {
   USER = 'USER',
 }
+
+export enum Countries {
+  USA = 'USA',
+  Ukraine = 'Ukraine',
+}

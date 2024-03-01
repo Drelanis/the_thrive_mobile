@@ -34,6 +34,8 @@ export const companyCreationInitialState: CompanyCreatorInitialStateType = {
 };
 
 // TODO Fetch items from Server
+export const ARRAY_OF_COUNTRIES: string[] = ['Ukraine', 'USA'];
+
 export const COUNTRIES = [
   {
     value: 'Ukraine',
@@ -67,3 +69,5 @@ export const COMPANY_DIRECTIONS = [
     label: 'Another direction',
   },
 ];
+
+export * from './countryAddressConfig';
