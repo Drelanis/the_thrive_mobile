@@ -5,5 +5,5 @@ export type SelectProps<Type extends FieldValues> = {
   control: Control<Type>;
   name: Path<Type>;
   label: string;
-  value?: string;
+  value?: string | string[];
 } & Pick<PressableProps, 'onPress'>;

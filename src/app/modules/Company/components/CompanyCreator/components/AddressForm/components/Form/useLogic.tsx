@@ -7,7 +7,7 @@ import { FormProps } from './type';
 import { officeAddressStore } from '$app/stores/company';
 
 export const useLogic = <Type extends FieldValues>(params: FormProps<Type>) => {
-  const { fields, remove, control, append, setValue, setCountry } = params;
+  const { fields, remove, control, append, setValue } = params;
 
   const addressFields = useMemo(() => {
     return fields.map((field, index) => {
@@ -22,11 +22,10 @@ export const useLogic = <Type extends FieldValues>(params: FormProps<Type>) => {
           index={index}
           control={control}
           setValue={setValue}
-          setCountry={setCountry}
         />
       );
     });
-  }, [control, fields, remove, setValue, setCountry]);
+  }, [control, fields, remove, setValue]);
 
   const appendAddress = useCallback(() => {
     append(officeAddressStore as FieldArray<Type, ArrayPath<Type>>);

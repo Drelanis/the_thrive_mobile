@@ -1,9 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo } from 'react';
 import { ArrayPath, FieldValues, useFieldArray } from 'react-hook-form';
 
 import { AddressFormProps } from './types';
 
-import { OfficeAddressType } from '$app/stores';
+import { CompanyCreatorStoreType, OfficeAddressType } from '$app/stores';
+import { useCompanyCreationStore } from '$app/stores/company';
 import { useModal } from '$common';
 
 export const useLogic = <Type extends FieldValues>(
@@ -19,7 +20,7 @@ export const useLogic = <Type extends FieldValues>(
     isValid,
   } = params;
 
-  const [selectValues, setSelectValues] = useState('');
+  const { company, setCompany } = useCompanyCreationStore();
 
   const { fields, append, remove } = useFieldArray({
     control,
@@ -37,16 +38,15 @@ export const useLogic = <Type extends FieldValues>(
     initialState,
   });
 
-  const getSelectValue = (): string => {
-    const { address } = getValues();
-
-    return address.map(
+  const selectValues = useMemo(() => {
+    return company.address.map(
       (field: OfficeAddressType) => `${field.country}, ${field.street}`,
     );
-  };
+  }, [company.address]);
 
   const onSubmit = () => {
-    setSelectValues(getSelectValue());
+    const values = getValues();
+    setCompany(values as unknown as CompanyCreatorStoreType);
 
     onApplyHandler();
   };

@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from 'react';
+import { useMemo } from 'react';
 import { FieldValues, Path, useController } from 'react-hook-form';
 import uuid from 'react-native-uuid';
 
@@ -9,11 +9,11 @@ import { Input, InputType } from '$ui';
 
 type Params<Type extends FieldValues> = Pick<
   FormFieldProps<Type>,
-  'index' | 'control' | 'setCountry'
+  'index' | 'control'
 >;
 
 export const useLogic = <Type extends FieldValues>(params: Params<Type>) => {
-  const { control, index, setCountry } = params;
+  const { control, index } = params;
 
   const {
     field: { value },
@@ -21,10 +21,6 @@ export const useLogic = <Type extends FieldValues>(params: Params<Type>) => {
     control,
     name: `address.${index}.country` as Path<Type>,
   });
-
-  useEffect(() => {
-    setCountry(value);
-  }, [value, setCountry]);
 
   const addressFields = useMemo(() => {
     if (!value) {
