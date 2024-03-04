@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from 'react';
+import { useMemo } from 'react';
 import { ArrayPath, FieldValues, useFieldArray } from 'react-hook-form';
 
 import { AddressFormProps } from './types';
@@ -10,15 +10,7 @@ import { useModal } from '$common';
 export const useLogic = <Type extends FieldValues>(
   params: Omit<AddressFormProps<Type>, 'setValue' | 'setCountry'>,
 ) => {
-  const {
-    name,
-    control,
-    getValues,
-    resetField,
-    initialState,
-    trigger,
-    isValid,
-  } = params;
+  const { name, control, getValues, resetField, initialState } = params;
 
   const { company, setCompany } = useCompanyCreationStore();
 
@@ -26,10 +18,6 @@ export const useLogic = <Type extends FieldValues>(
     control,
     name: name as ArrayPath<Type>,
   });
-
-  useEffect(() => {
-    trigger(name);
-  }, [isValid, trigger, name, fields]);
 
   const { isOpen, onApplyHandler, onCloseHandler, onOpenHandler } = useModal({
     name,

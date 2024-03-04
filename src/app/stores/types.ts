@@ -1,3 +1,5 @@
+import { Countries } from '$configs';
+
 export type DirectionType = {
   id: string;
   name: string;
@@ -5,7 +7,7 @@ export type DirectionType = {
 };
 
 export type OfficeAddressType = {
-  country: string;
+  country: Countries | '';
   state: string;
   region: string;
   city: string;

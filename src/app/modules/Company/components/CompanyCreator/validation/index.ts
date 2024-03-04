@@ -1,52 +1,42 @@
 import * as yup from 'yup';
 
-import { ARRAY_OF_COUNTRIES } from '$app/stores/company';
 import { officeAddressValidationConfig } from '$app/stores/company/officeAddressValidationConfig';
 import { Countries } from '$configs';
 import { ValidationHints } from '$packages/configs';
 
-const companyValidationSchema = yup.object({
+const addressValidationSchema = yup
+  .array()
+  .min(1, ValidationHints.ADDRESS_EMPTY)
+  .of(
+    yup.object({
+      country: yup.string().required(ValidationHints.REQUIRED),
+      state: yup.string().when('country', (country: Countries[]) => {
+        const currentCountry = country[0];
+        if (!currentCountry) {
+          return yup.string().required(ValidationHints.REQUIRED);
+        }
+        return officeAddressValidationConfig[currentCountry].state;
+      }),
+      region: yup.string().required(ValidationHints.REQUIRED),
+      city: yup.string().required(ValidationHints.REQUIRED),
+      street: yup.string().required(ValidationHints.REQUIRED),
+      zipCode: yup.string().when('country', (country: Countries[]) => {
+        const currentCountry = country[0];
+        if (!currentCountry) {
+          return yup.string().required(ValidationHints.REQUIRED);
+        }
+        return officeAddressValidationConfig[currentCountry].zipCode;
+      }),
+    }),
+  );
+
+export const companyValidationSchema = yup.object({
   name: yup.string().required(ValidationHints.REQUIRED),
   email: yup
     .string()
     .required(ValidationHints.REQUIRED)
     .email(ValidationHints.INVALID_EMAIL),
   numberOfEmployee: yup.string().required(ValidationHints.REQUIRED),
+  address: addressValidationSchema,
+  directions: yup.array().min(1, ValidationHints.DIRECTION_EMPTY),
 });
-
-const officeAddressValidationSchema = {
-  country: yup
-    .string()
-    .required(ValidationHints.REQUIRED)
-    .oneOf(ARRAY_OF_COUNTRIES, ValidationHints.INCORRECT_VALUE),
-};
-
-const getOfficeAddressValidationSchema = (country: Countries | null) => {
-  if (!country) {
-    return yup.object({
-      ...officeAddressValidationSchema,
-    });
-  }
-
-  const addressSchema = officeAddressValidationConfig[country];
-
-  return yup.object({
-    ...officeAddressValidationSchema,
-    ...addressSchema,
-  });
-};
-
-export const getCompanyCreationValidationSchema = (
-  country: Countries | null,
-) => {
-  const validationSchema = yup.object({
-    company: companyValidationSchema,
-    address: yup
-      .array()
-      .of(getOfficeAddressValidationSchema(country))
-      .min(1, ValidationHints.ADDRESS_EMPTY),
-    directions: yup.array().min(1, ValidationHints.DIRECTION_EMPTY),
-  });
-
-  return validationSchema;
-};

@@ -1,22 +1,20 @@
 import { FieldValues } from 'react-hook-form';
 
 import { SelectDirectionsProps } from './types';
-import { useLogic } from './useLogic';
 
+import { COMPANY_DIRECTIONS } from '$app/stores/company';
 import { useModal } from '$common';
 import { ArrowLeft, Button, CheckboxGroup, FullScreenModal, Select } from '$ui';
 
 export const SelectDirections = <Type extends FieldValues>(
   props: SelectDirectionsProps<Type>,
 ) => {
-  const { control, name, trigger, isValid, ...restProps } = props;
+  const { control, name, isValid, ...restProps } = props;
 
   const { isOpen, onApplyHandler, onCloseHandler, onOpenHandler } = useModal({
     name,
     ...restProps,
   });
-
-  const { options } = useLogic({ trigger, name, isValid });
 
   return (
     <>
@@ -38,10 +36,14 @@ export const SelectDirections = <Type extends FieldValues>(
           <CheckboxGroup
             control={control}
             name={name}
-            options={options || []}
+            options={COMPANY_DIRECTIONS || []}
           />
         }
-        footer={<Button onPress={onApplyHandler}>Apply</Button>}
+        footer={
+          <Button isDisabled={isValid} onPress={onApplyHandler}>
+            Apply
+          </Button>
+        }
       />
     </>
   );

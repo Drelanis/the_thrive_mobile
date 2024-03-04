@@ -6,7 +6,6 @@ import {
   UseFormGetValues,
   UseFormResetField,
   UseFormSetValue,
-  UseFormTrigger,
 } from 'react-hook-form';
 
 export type AddressFormProps<Type extends FieldValues> = {
@@ -17,5 +16,4 @@ export type AddressFormProps<Type extends FieldValues> = {
   resetField: UseFormResetField<Type>;
   isValid: boolean;
   setValue: UseFormSetValue<Type>;
-  trigger: UseFormTrigger<Type>;
 };

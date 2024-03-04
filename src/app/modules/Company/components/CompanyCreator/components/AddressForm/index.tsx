@@ -44,7 +44,7 @@ export const AddressForm = <Type extends FieldValues>(
         }}
         body={<Form control={control} setValue={setValue} {...restParams} />}
         footer={
-          <Button isDisabled={!isValid} onPress={onSubmit}>
+          <Button isDisabled={isValid} onPress={onSubmit}>
             Apply
           </Button>
         }

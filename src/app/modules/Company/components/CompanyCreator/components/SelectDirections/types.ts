@@ -5,7 +5,6 @@ import {
   PathValue,
   UseFormGetValues,
   UseFormResetField,
-  UseFormTrigger,
 } from 'react-hook-form';
 
 export type OptionType = {
@@ -19,6 +18,5 @@ export type SelectDirectionsProps<Type extends FieldValues> = {
   getValues: UseFormGetValues<Type>;
   initialState: PathValue<Type, Path<Type>>;
   resetField: UseFormResetField<Type>;
-  trigger: UseFormTrigger<Type>;
   isValid: boolean;
 };

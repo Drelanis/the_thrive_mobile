@@ -1,18 +1,17 @@
 import { Heading, VStack } from '@gluestack-ui/themed';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useState } from 'react';
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { StyleSheet } from 'react-native';
 
 import { AddressForm, SelectDirections } from './components';
-import { getCompanyCreationValidationSchema } from './validation';
+import { companyValidationSchema } from './validation';
 
 import { Button, Input } from '$app/packages/ui';
-import { companyCreationInitialState } from '$app/stores/company';
-import { Countries } from '$configs';
+import { useCompanyCreationStore } from '$app/stores/company';
 
 export const CompanyCreator = () => {
-  const [country, setCountry] = useState<Countries | null>(null);
+  const { company } = useCompanyCreationStore();
 
   const {
     control,
@@ -22,48 +21,45 @@ export const CompanyCreator = () => {
     formState: { isValid, errors },
     trigger,
   } = useForm({
-    defaultValues: companyCreationInitialState,
-    resolver: yupResolver(getCompanyCreationValidationSchema(country)),
+    defaultValues: company,
+    resolver: yupResolver(companyValidationSchema),
     mode: 'onChange',
   });
+
+  useEffect(() => {
+    trigger(['address', 'directions']);
+  }, [company.address, company.directions, trigger]);
 
   return (
     <VStack style={styles.container}>
       <Heading>Create company</Heading>
       <Input
         control={control}
-        name="company.name"
+        name="name"
         placeholder="Enter your company name"
       />
+      <Input control={control} name="email" placeholder="Enter your email" />
       <Input
         control={control}
-        name="company.email"
-        placeholder="Enter your email"
-      />
-      <Input
-        control={control}
-        name="company.numberOfEmployee"
+        name="numberOfEmployee"
         placeholder="Enter the number of employees"
       />
       <AddressForm
         control={control}
         name="address"
-        isValid={!errors.address}
+        isValid={Boolean(errors.directions)}
         getValues={getValues}
         resetField={resetField}
         setValue={setValue}
-        initialState={companyCreationInitialState.address}
-        trigger={trigger}
-        setCountry={setCountry}
+        initialState={company.address}
       />
       <SelectDirections
         control={control}
         name="directions"
-        initialState={companyCreationInitialState.directions}
+        initialState={company.directions}
         getValues={getValues}
         resetField={resetField}
-        trigger={trigger}
-        isValid={!errors.directions}
+        isValid={Boolean(errors.directions)}
       />
       <Button onPress={() => {}} isDisabled={!isValid}>
         Create the company
