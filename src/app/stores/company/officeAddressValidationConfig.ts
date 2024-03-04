@@ -8,13 +8,19 @@ export const officeAddressValidationConfig = {
     region: yup.string().required(ValidationHints.REQUIRED),
     city: yup.string().required(ValidationHints.REQUIRED),
     street: yup.string().required(ValidationHints.REQUIRED),
-    zipCode: yup.string().required(ValidationHints.REQUIRED),
+    zipCode: yup
+      .string()
+      .matches(/^\d{4}-\d{4}$/, 'Invalid zip code format')
+      .required(ValidationHints.REQUIRED),
   },
   Ukraine: {
     state: yup.string().nullable(),
     region: yup.string().required(ValidationHints.REQUIRED),
     city: yup.string().required(ValidationHints.REQUIRED),
     street: yup.string().required(ValidationHints.REQUIRED),
-    zipCode: yup.string().required(ValidationHints.REQUIRED),
+    zipCode: yup
+      .string()
+      .matches(/^\d{5}$/, 'Invalid zip code format')
+      .required(ValidationHints.REQUIRED),
   },
 };
