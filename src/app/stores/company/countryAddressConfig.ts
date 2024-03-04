@@ -1,6 +1,7 @@
 export type AddressFieldType = {
   placeholder: string;
   name: string;
+  mask?: string;
 };
 
 export type CountryAddressConfig = {
@@ -29,6 +30,7 @@ export const countryAddressConfig = {
     {
       placeholder: 'Enter office zip-code',
       name: 'zipCode',
+      mask: '9999-9999',
     },
   ],
   Ukraine: [
@@ -47,6 +49,7 @@ export const countryAddressConfig = {
     {
       placeholder: 'Enter office zip-code',
       name: 'zipCode',
+      mask: '99999',
     },
   ],
 };

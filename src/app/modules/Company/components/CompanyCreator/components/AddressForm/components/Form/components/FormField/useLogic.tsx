@@ -1,5 +1,6 @@
 import { useEffect, useMemo } from 'react';
 import { FieldValues, Path, useController } from 'react-hook-form';
+import uuid from 'react-native-uuid';
 
 import { FormFieldProps } from './types';
 
@@ -32,8 +33,7 @@ export const useLogic = <Type extends FieldValues>(params: Params<Type>) => {
 
     const fields = countryAddressConfig[value].map(
       (field: AddressFieldType) => {
-        // TODO replace with uuid!
-        const key = Math.random();
+        const key = uuid.v4() as string;
 
         return (
           <Input
@@ -42,6 +42,7 @@ export const useLogic = <Type extends FieldValues>(params: Params<Type>) => {
             placeholder={field.placeholder}
             control={control}
             name={`address.${index}.${field.name}` as Path<Type>}
+            mask={field.mask}
           />
         );
       },
