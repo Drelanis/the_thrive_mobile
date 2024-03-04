@@ -17,11 +17,10 @@ export type CompanyCreatorStoreType = {
   name: string;
   email: string;
   numberOfEmployee: string;
-  directions: string;
+  address: OfficeAddressType[];
+  directions: string[];
 };
 
 export type CompanyCreatorInitialStateType = {
   company: CompanyCreatorStoreType;
-  address: OfficeAddressType[];
-  directions: string[];
 };

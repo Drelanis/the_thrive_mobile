@@ -1,7 +1,7 @@
+import { createMultiScreenStore } from '../store';
 import {
   CompanyCreatorInitialStateType,
   CompanyCreatorStoreType,
-  DirectionType,
   OfficeAddressType,
 } from '../types';
 
@@ -18,20 +18,17 @@ const companyCreatorStore: CompanyCreatorStoreType = {
   name: '',
   email: '',
   numberOfEmployee: '',
-  directions: '',
-};
-
-export const companyDirection: DirectionType = {
-  id: '',
-  name: '',
-  description: '',
+  address: [],
+  directions: [],
 };
 
 export const companyCreationInitialState: CompanyCreatorInitialStateType = {
   company: companyCreatorStore,
-  address: [],
-  directions: [],
 };
+
+export const useCompanyCreationStore = createMultiScreenStore(
+  companyCreationInitialState,
+);
 
 // TODO Fetch items from Server
 export const ARRAY_OF_COUNTRIES: string[] = ['Ukraine', 'USA'];
