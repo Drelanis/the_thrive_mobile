@@ -40,7 +40,7 @@ export const useModal = <Type extends FieldValues>(params: Params<Type>) => {
   const onCloseHandler = useCallback(() => {
     setIsOpen(false);
 
-    resetField(name, { defaultValue: fieldStateRef.current });
+    resetField(name, { defaultValue: fieldStateRef.current, keepError: true });
   }, [name, resetField]);
 
   useEffect(() => {
