@@ -1,3 +1,4 @@
+import { useMemo } from 'react';
 import { FieldValues, useController } from 'react-hook-form';
 
 import { handleSelectedValues } from './helpers';
@@ -19,7 +20,9 @@ export const useLogic = <Type extends FieldValues>(params: Params<Type>) => {
     control,
   });
 
-  const inputValues = handleSelectedValues(value ?? controlValue);
+  const inputValues = useMemo(() => {
+    return handleSelectedValues(value ?? controlValue);
+  }, [value, controlValue]);
 
   return { inputValues, error };
 };
