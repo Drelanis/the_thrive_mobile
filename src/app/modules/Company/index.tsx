@@ -18,5 +18,4 @@ const styles = StyleSheet.create({
     flex: 1,
     margin: 16,
   },
-  text: {},
 });
