@@ -1,4 +1,6 @@
-/.expo
+.expo
+.husky
+assets
 node_modules
 .eslintrc.js
 babel.config.js
