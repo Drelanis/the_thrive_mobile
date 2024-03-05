@@ -40,10 +40,12 @@ export const useLogic = <Type extends FieldValues>(params: Params<Type>) => {
     setValue(
       `address.${index}.state` as Path<Type>,
       '' as PathValue<Type, Path<Type>>,
+      { shouldValidate: true },
     );
     setValue(
       `address.${index}.zipCode` as Path<Type>,
       '' as PathValue<Type, Path<Type>>,
+      { shouldValidate: true },
     );
     trigger(`address.${index}` as Path<Type>);
   }, [value, index, setValue, trigger, company, getValues]);
