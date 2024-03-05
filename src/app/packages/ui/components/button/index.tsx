@@ -1,4 +1,8 @@
-import { Button as GluestackButton, ButtonText } from '@gluestack-ui/themed';
+import {
+  Button as GluestackButton,
+  ButtonSpinner,
+  ButtonText,
+} from '@gluestack-ui/themed';
 import { PropsWithChildren } from 'react';
 import { PressableProps, StyleSheet } from 'react-native';
 
@@ -7,6 +11,7 @@ import { ButtonVariants } from './types';
 type Props = {
   isDisabled?: boolean;
   variant?: ButtonVariants;
+  isLoading?: boolean;
 } & PropsWithChildren &
   PressableProps;
 
@@ -15,8 +20,17 @@ export const Button = (props: Props) => {
     children,
     isDisabled = false,
     variant = ButtonVariants.SOLID,
+    isLoading,
     ...restProps
   } = props;
+
+  if (isLoading) {
+    return (
+      <GluestackButton isDisabled>
+        <ButtonSpinner />
+      </GluestackButton>
+    );
+  }
 
   return (
     <GluestackButton

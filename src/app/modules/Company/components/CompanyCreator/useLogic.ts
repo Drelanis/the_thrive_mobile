@@ -1,20 +1,23 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import axios from 'axios';
-import { useContext, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Alert } from 'react-native';
 
 import { companyValidationSchema } from './validation';
 
-import { LoadingContext } from '$app/layout/providers/loader';
 import { useRedirect } from '$app/packages/common';
-import { useCompanyCreationStore } from '$app/stores/company';
+import { CompanyCreatorStoreType } from '$app/stores';
+import {
+  companyCreationInitialState,
+  useCompanyCreationStore,
+} from '$app/stores/company';
 import { ResponseType, Routes } from '$configs';
 
 export const useLogic = () => {
-  const { setLoading } = useContext(LoadingContext);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const { company } = useCompanyCreationStore();
+  const { company, setCompany } = useCompanyCreationStore();
 
   const { ideasRedirect } = useRedirect();
 
@@ -40,20 +43,22 @@ export const useLogic = () => {
   }, [addressWatch, trigger]);
 
   const onSubmit = async () => {
-    setLoading(true);
+    setIsLoading(true);
 
     const { data } = await axios.post<ResponseType>(Routes.CREATE_COMPANY, {
       ...getValues(),
     });
 
-    setLoading(false);
+    setIsLoading(false);
 
     if (data.isError) {
       Alert.alert(data.message);
+
       return;
     }
 
-    reset();
+    reset(companyCreationInitialState.company);
+    setCompany(getValues() as CompanyCreatorStoreType);
     ideasRedirect();
   };
 
@@ -67,5 +72,6 @@ export const useLogic = () => {
     isValid,
     errors,
     trigger,
+    isLoading,
   };
 };

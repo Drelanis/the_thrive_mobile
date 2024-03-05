@@ -15,6 +15,7 @@ export const CompanyCreator = () => {
     resetField,
     setValue,
     isValid,
+    isLoading,
     errors,
     trigger,
   } = useLogic();
@@ -51,7 +52,7 @@ export const CompanyCreator = () => {
         resetField={resetField}
         isValid={Boolean(errors.directions)}
       />
-      <Button onPress={onSubmit} isDisabled={!isValid}>
+      <Button onPress={onSubmit} isLoading={isLoading} isDisabled={!isValid}>
         Create the company
       </Button>
     </VStack>
