@@ -30,8 +30,8 @@ export const useLogic = <Type extends FieldValues>(params: Params<Type>) => {
 
   useEffect(() => {
     const isCountryNotChanged =
-      company.address[index] &&
-      company.address[index].country === getValues().address[index].country;
+      JSON.stringify(company.address[index]) ===
+      JSON.stringify(getValues().address[index]);
 
     if (isCountryNotChanged) {
       return;
