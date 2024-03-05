@@ -11,7 +11,7 @@ export const officeAddressValidationConfig = {
       .required(ValidationHints.REQUIRED),
   },
   Ukraine: {
-    state: yup.string().nullable(),
+    state: yup.string().notRequired(),
     zipCode: yup
       .string()
       .matches(/^\d{5}$/, 'Invalid zip code format')

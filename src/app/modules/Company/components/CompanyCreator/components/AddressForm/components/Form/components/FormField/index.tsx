@@ -11,9 +11,15 @@ import { Button, SingleSelect } from '$ui';
 export const FormField = <Type extends FieldValues>(
   props: FormFieldProps<Type>,
 ) => {
-  const { index, control, remove, setValue } = props;
+  const { index, control, remove, setValue, trigger, getValues } = props;
 
-  const { addressFields } = useLogic({ control, index });
+  const { addressFields } = useLogic({
+    control,
+    index,
+    trigger,
+    setValue,
+    getValues,
+  });
 
   return (
     <View style={styles.container}>

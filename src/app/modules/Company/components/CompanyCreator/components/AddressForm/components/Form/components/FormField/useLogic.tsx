@@ -1,19 +1,25 @@
-import { useMemo } from 'react';
-import { FieldValues, Path, useController } from 'react-hook-form';
+import { useEffect, useMemo } from 'react';
+import { FieldValues, Path, PathValue, useController } from 'react-hook-form';
 import uuid from 'react-native-uuid';
 
 import { FormFieldProps } from './types';
 
-import { AddressFieldType, countryAddressConfig } from '$app/stores/company';
+import {
+  AddressFieldType,
+  countryAddressConfig,
+  useCompanyCreationStore,
+} from '$app/stores/company';
 import { Input, InputType } from '$ui';
 
 type Params<Type extends FieldValues> = Pick<
   FormFieldProps<Type>,
-  'index' | 'control'
+  'index' | 'control' | 'trigger' | 'setValue' | 'getValues'
 >;
 
 export const useLogic = <Type extends FieldValues>(params: Params<Type>) => {
-  const { control, index } = params;
+  const { control, index, trigger, setValue, getValues } = params;
+
+  const { company } = useCompanyCreationStore();
 
   const {
     field: { value },
@@ -21,6 +27,26 @@ export const useLogic = <Type extends FieldValues>(params: Params<Type>) => {
     control,
     name: `address.${index}.country` as Path<Type>,
   });
+
+  useEffect(() => {
+    const isCountryNotChanged =
+      company.address[index] &&
+      company.address[index].country === getValues().address[index].country;
+
+    if (isCountryNotChanged) {
+      return;
+    }
+
+    setValue(
+      `address.${index}.state` as Path<Type>,
+      '' as PathValue<Type, Path<Type>>,
+    );
+    setValue(
+      `address.${index}.zipCode` as Path<Type>,
+      '' as PathValue<Type, Path<Type>>,
+    );
+    trigger(`address.${index}` as Path<Type>);
+  }, [value, index, setValue, trigger, company, getValues]);
 
   const addressFields = useMemo(() => {
     if (!value) {

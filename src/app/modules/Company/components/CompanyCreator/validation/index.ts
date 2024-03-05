@@ -4,16 +4,15 @@ import { officeAddressValidationConfig } from '$app/stores/company/officeAddress
 import { Countries } from '$configs';
 import { ValidationHints } from '$packages/configs';
 
-const addressValidationSchema = yup
+export const addressValidationSchema = yup
   .array()
-  .min(1, ValidationHints.ADDRESS_EMPTY)
   .of(
     yup.object({
       country: yup.string().required(ValidationHints.REQUIRED),
-      state: yup.string().when('country', (country: Countries[]) => {
+      state: yup.string().when('country', (country: Countries[], schema) => {
         const currentCountry = country[0];
         if (!currentCountry) {
-          return yup.string().required(ValidationHints.REQUIRED);
+          return schema;
         }
         return officeAddressValidationConfig[currentCountry].state;
       }),
@@ -28,7 +27,8 @@ const addressValidationSchema = yup
         return officeAddressValidationConfig[currentCountry].zipCode;
       }),
     }),
-  );
+  )
+  .min(1, ValidationHints.ADDRESS_EMPTY);
 
 export const companyValidationSchema = yup.object({
   name: yup.string().required(ValidationHints.REQUIRED),

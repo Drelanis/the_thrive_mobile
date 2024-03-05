@@ -1,34 +1,23 @@
 import { Heading, VStack } from '@gluestack-ui/themed';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { useEffect } from 'react';
-import { useForm } from 'react-hook-form';
 import { StyleSheet } from 'react-native';
 
 import { AddressForm, SelectDirections } from './components';
-import { companyValidationSchema } from './validation';
+import { useLogic } from './useLogic';
 
 import { Button, Input } from '$app/packages/ui';
-import { useCompanyCreationStore } from '$app/stores/company';
 
 export const CompanyCreator = () => {
-  const { company } = useCompanyCreationStore();
-
   const {
+    onSubmit,
+    company,
     control,
     getValues,
     resetField,
     setValue,
-    formState: { isValid, errors },
+    isValid,
+    errors,
     trigger,
-  } = useForm({
-    defaultValues: company,
-    resolver: yupResolver(companyValidationSchema),
-    mode: 'onChange',
-  });
-
-  useEffect(() => {
-    trigger(['address', 'directions']);
-  }, [company.address, company.directions, trigger]);
+  } = useLogic();
 
   return (
     <VStack style={styles.container}>
@@ -47,11 +36,12 @@ export const CompanyCreator = () => {
       <AddressForm
         control={control}
         name="address"
-        isValid={Boolean(errors.directions)}
+        isValid={Boolean(errors.address)}
         getValues={getValues}
         resetField={resetField}
         setValue={setValue}
         initialState={company.address}
+        trigger={trigger}
       />
       <SelectDirections
         control={control}
@@ -61,7 +51,7 @@ export const CompanyCreator = () => {
         resetField={resetField}
         isValid={Boolean(errors.directions)}
       />
-      <Button onPress={() => {}} isDisabled={!isValid}>
+      <Button onPress={onSubmit} isDisabled={!isValid}>
         Create the company
       </Button>
     </VStack>

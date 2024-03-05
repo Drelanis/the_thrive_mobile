@@ -1,5 +1,5 @@
-import { useMemo } from 'react';
-import { ArrayPath, FieldValues, useFieldArray } from 'react-hook-form';
+import { useEffect, useMemo } from 'react';
+import { ArrayPath, FieldValues, Path, useFieldArray } from 'react-hook-form';
 
 import { AddressFormProps } from './types';
 
@@ -10,7 +10,8 @@ import { useModal } from '$common';
 export const useLogic = <Type extends FieldValues>(
   params: Omit<AddressFormProps<Type>, 'setValue' | 'setCountry'>,
 ) => {
-  const { name, control, getValues, resetField, initialState } = params;
+  const { name, control, getValues, resetField, initialState, trigger } =
+    params;
 
   const { company, setCompany } = useCompanyCreationStore();
 
@@ -25,6 +26,10 @@ export const useLogic = <Type extends FieldValues>(
     resetField,
     initialState,
   });
+
+  useEffect(() => {
+    trigger('address' as Path<Type>);
+  }, [isOpen, trigger]);
 
   const selectValues = useMemo(() => {
     return company.address.map(

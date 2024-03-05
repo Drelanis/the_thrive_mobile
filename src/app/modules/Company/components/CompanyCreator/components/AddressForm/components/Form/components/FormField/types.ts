@@ -5,4 +5,4 @@ import { FormProps } from '../../type';
 export type FormFieldProps<Type extends FieldValues> = {
   index: number;
   remove: () => void;
-} & Pick<FormProps<Type>, 'control' | 'setValue'>;
+} & Pick<FormProps<Type>, 'control' | 'setValue' | 'trigger' | 'getValues'>;

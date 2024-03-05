@@ -29,6 +29,9 @@ export type ScreenStackType = {
   SignIn: undefined;
   SignUp: undefined;
   BottomNavigation: undefined;
+  Company: undefined;
+  Store: undefined;
+  Ideas: undefined;
 };
 
 export type ResponseType = {
