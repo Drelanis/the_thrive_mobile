@@ -25,7 +25,11 @@ export const StackNavigation = () => {
   return (
     <Stack.Navigator initialRouteName={Screens.MAIN}>
       <Stack.Screen
-        options={{ headerShown: false, gestureEnabled: false }}
+        options={{
+          headerShown: false,
+          gestureEnabled: false,
+          animationEnabled: false,
+        }}
         name={Screens.SIGN_IN}
         component={SignIn}
       />
