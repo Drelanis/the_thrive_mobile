@@ -36,6 +36,8 @@ export const useLogic = () => {
   useEffect(() => {
     if (session) {
       bottomNavigationRedirect();
+
+      return;
     }
     if (isTwoFactor) {
       setValue('isTwoFactor', true, { shouldValidate: true });

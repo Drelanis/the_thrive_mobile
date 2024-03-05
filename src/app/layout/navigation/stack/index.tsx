@@ -23,7 +23,7 @@ export const StackNavigation = () => {
   }
 
   return (
-    <Stack.Navigator>
+    <Stack.Navigator initialRouteName={Screens.MAIN}>
       <Stack.Screen
         options={{ headerShown: false, gestureEnabled: false }}
         name={Screens.SIGN_IN}
