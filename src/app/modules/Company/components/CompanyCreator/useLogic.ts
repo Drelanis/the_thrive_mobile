@@ -12,14 +12,17 @@ import {
   companyCreationInitialState,
   useCompanyCreationStore,
 } from '$app/stores/company';
-import { ResponseType, Routes } from '$configs';
+import { CompanyDirectionType, ResponseType, Routes } from '$configs';
 
 export const useLogic = () => {
   const [isLoading, setIsLoading] = useState(false);
-
-  const { company, setCompany } = useCompanyCreationStore();
+  const [directions, setDirections] = useState<CompanyDirectionType[] | null>(
+    null,
+  );
 
   const { ideasRedirect } = useRedirect();
+
+  const { company, setCompany } = useCompanyCreationStore();
 
   const {
     control,
@@ -38,9 +41,23 @@ export const useLogic = () => {
 
   const addressWatch = watch().address;
 
+  const getDirections = async () => {
+    setIsLoading(true);
+
+    const { data } = await axios.get(Routes.COMPANY_DIRECTIONS);
+
+    setIsLoading(false);
+
+    setDirections(data);
+  };
+
   useEffect(() => {
+    if (!directions) {
+      getDirections();
+    }
+
     trigger(['address', 'directions']);
-  }, [addressWatch, trigger]);
+  }, [addressWatch, trigger, directions]);
 
   const onSubmit = async () => {
     setIsLoading(true);
@@ -51,11 +68,13 @@ export const useLogic = () => {
 
     setIsLoading(false);
 
-    if (data.isError) {
+    if (!data || data.isError) {
       Alert.alert(data.message);
 
       return;
     }
+
+    Alert.alert(data.message);
 
     reset(companyCreationInitialState.company);
     setCompany(getValues() as CompanyCreatorStoreType);
@@ -73,5 +92,6 @@ export const useLogic = () => {
     errors,
     trigger,
     isLoading,
+    directions,
   };
 };

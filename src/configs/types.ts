@@ -29,3 +29,9 @@ export type UserSessionType = {
   user: UserType;
   expires: string;
 };
+
+export type CompanyDirectionType = {
+  id: string;
+  description: string;
+  name: string;
+};

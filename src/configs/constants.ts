@@ -14,6 +14,7 @@ export enum Routes {
   REFRESH_SESSION = 'http://localhost:3000/api/api-auth/refresh',
   RESET_PASSWORD = 'http://localhost:3000/api/api-auth/resetPassword',
   CREATE_COMPANY = 'http://localhost:3000/api/company',
+  COMPANY_DIRECTIONS = 'http://localhost:3000/api/company/direction',
 }
 
 export enum UserRoles {

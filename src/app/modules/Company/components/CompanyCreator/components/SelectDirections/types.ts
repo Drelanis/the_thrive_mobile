@@ -7,6 +7,8 @@ import {
   UseFormResetField,
 } from 'react-hook-form';
 
+import { CompanyDirectionType } from '$configs';
+
 export type OptionType = {
   value: string;
   label: string;
@@ -19,4 +21,5 @@ export type SelectDirectionsProps<Type extends FieldValues> = {
   initialState: PathValue<Type, Path<Type>>;
   resetField: UseFormResetField<Type>;
   isValid: boolean;
+  directions: CompanyDirectionType[] | null;
 };

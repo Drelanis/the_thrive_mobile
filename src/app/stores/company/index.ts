@@ -44,27 +44,4 @@ export const COUNTRIES = [
   },
 ];
 
-export const COMPANY_DIRECTIONS = [
-  {
-    value: 'Technology and Software Development',
-    label: 'Technology and Software Development',
-  },
-  {
-    value: 'Healthcare and Biotechnology',
-    label: 'Healthcare and Biotechnology',
-  },
-  {
-    value: 'Finance and Fintech',
-    label: 'Finance and Fintech',
-  },
-  {
-    value: 'Telecommunications',
-    label: 'Telecommunications',
-  },
-  {
-    value: 'Another direction',
-    label: 'Another direction',
-  },
-];
-
 export * from './countryAddressConfig';

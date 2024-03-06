@@ -18,6 +18,7 @@ export const CompanyCreator = () => {
     isLoading,
     errors,
     trigger,
+    directions,
   } = useLogic();
 
   return (
@@ -51,6 +52,7 @@ export const CompanyCreator = () => {
         getValues={getValues}
         resetField={resetField}
         isValid={Boolean(errors.directions)}
+        directions={directions}
       />
       <Button onPress={onSubmit} isLoading={isLoading} isDisabled={!isValid}>
         Create the company
